@@ -72,7 +72,7 @@ public class CityService {
     }
 
     private void saveXmlToFile(String xmlContent, String filePath) {
-        try (FileWriter fileWriter = new FileWriter(new File(filePath))) {
+        try (FileWriter fileWriter = new FileWriter(filePath)) {
             fileWriter.write(xmlContent);
             log.debug("XML данные записаны в файл: {}", filePath);
         } catch (IOException e) {
