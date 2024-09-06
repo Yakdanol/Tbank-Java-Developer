@@ -6,10 +6,12 @@ import org.yakdanol.homework.model.CustomLinkedList;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CustomLinkedListTests {
+
 	private CustomLinkedList<String> customList;
 
 	@BeforeEach
@@ -83,5 +85,27 @@ public class CustomLinkedListTests {
 
 		customList.remove(1);
 		assertEquals(1, customList.size());  // Проверяем размер после удаления
+	}
+
+	@Test
+	public void testStreamToCustomLinkedList() {
+		Stream<String> stream = Stream.of("Element 6", "Element 7", "Element 8");
+		CustomLinkedList<String> customListFromStream = stream.reduce(
+				new CustomLinkedList<>(),
+				(list, element) -> {
+					list.add(element);
+					return list;
+				},
+				(list1, list2) -> {
+					list1.addAll((List<String>) list2);
+					return list1;
+				}
+		);
+
+		// Проверяем размер и содержимое списка
+		assertEquals(3, customListFromStream.size());
+		assertEquals("Element 6", customListFromStream.get(0));
+		assertEquals("Element 7", customListFromStream.get(1));
+		assertEquals("Element 8", customListFromStream.get(2));
 	}
 }

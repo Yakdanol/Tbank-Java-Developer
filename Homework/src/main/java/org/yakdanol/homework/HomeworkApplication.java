@@ -6,6 +6,7 @@ import org.yakdanol.homework.model.CustomLinkedList;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 @SpringBootApplication
 public class HomeworkApplication {
@@ -56,5 +57,23 @@ public class HomeworkApplication {
 		// Тестирование метода size
 		System.out.println("\n=== Тестирование метода size ===");
 		System.out.println("Size of the list: " + customList.size()); // 4
+
+		// Тестирование преобразования стрима в CustomLinkedList с помощью reduce
+		System.out.println("\n=== Тестирование преобразования стрима в CustomLinkedList ===");
+		Stream<String> stream = Stream.of("Element 6", "Element 7", "Element 8");
+		CustomLinkedList<String> customListFromStream = stream.reduce(
+				new CustomLinkedList<>(),
+				(list, element) -> {
+					list.add(element);
+					return list;
+				},
+				(list1, list2) -> {
+					list1.addAll((List<String>) list2);
+					return list1;
+				}
+		);
+
+		System.out.println("CustomLinkedList после преобразования из стрима:");
+		customListFromStream.printList();  // Element 6, Element 7, Element 8
 	}
 }
