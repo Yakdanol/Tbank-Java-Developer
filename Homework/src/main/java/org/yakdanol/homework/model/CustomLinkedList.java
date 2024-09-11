@@ -52,8 +52,8 @@ public class CustomLinkedList<E> {
     }
 
     /**
-     * Удаляет элемент в указанной позиции в этом списке. Сдвигает все
-     * последующие элементы влево (вычитает единицу из их индексов).
+     * Удаляет элемент в указанной позиции в этом списке.
+     * Сдвигает все последующие элементы влево.
      * Возвращает элемент, который был удален из списка.
      */
     public E remove(int index) {
@@ -116,17 +116,14 @@ public class CustomLinkedList<E> {
             first = next;
         } else {
             prev.next = next;
-            x.prev = null;
         }
 
         if (next == null) {
             last = prev;
         } else {
             next.prev = prev;
-            x.next = null;
         }
 
-        x.item = null;
         size--;
         return element;
     }
