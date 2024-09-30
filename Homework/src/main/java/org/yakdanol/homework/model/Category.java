@@ -1,8 +1,8 @@
 package org.yakdanol.homework.model;
 
-import lombok.Data;
-import lombok.NonNull;
+import lombok.*;
 
+@NoArgsConstructor
 @Data
 public class Category {
     private int id;
