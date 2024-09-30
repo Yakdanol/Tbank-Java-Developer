@@ -2,6 +2,7 @@ package org.yakdanol.homework.model;
 
 import lombok.*;
 
+@AllArgsConstructor
 @NoArgsConstructor
 @Data
 public class Category {
