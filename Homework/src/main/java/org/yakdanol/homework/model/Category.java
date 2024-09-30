@@ -5,7 +5,7 @@ import lombok.*;
 @NoArgsConstructor
 @Data
 public class Category {
-    private int id;
+    private Long id;
 
     @NonNull
     private String slug;
