@@ -13,5 +13,4 @@ public class Category {
 
     @NonNull
     private String name;
-
 }

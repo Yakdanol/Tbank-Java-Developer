@@ -14,7 +14,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
-class CategoryServiceTest {
+class CategoryTest {
 
     @Mock
     private CategoryRepository categoryRepository;
