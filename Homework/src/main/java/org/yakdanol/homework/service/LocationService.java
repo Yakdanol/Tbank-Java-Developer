@@ -27,6 +27,9 @@ public class LocationService {
     }
 
     public Location updateLocation(String slug, Location location) {
+        // Проверка наличия локации с использованием findBySlug
+        locationRepository.findBySlug(slug); // Если локации нет, будет выброшено LocationNotFoundException
+
         return locationRepository.save(slug, location);
     }
 

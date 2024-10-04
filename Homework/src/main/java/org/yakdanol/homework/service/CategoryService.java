@@ -27,6 +27,9 @@ public class CategoryService {
     }
 
     public Category updateCategory(Long id, Category category) {
+        // Проверка наличия категории с использованием findById
+        categoryRepository.findById(id); // Если категории нет, будет выброшено CategoryNotFoundException
+
         return categoryRepository.save(id, category);
     }
 
@@ -34,4 +37,3 @@ public class CategoryService {
         categoryRepository.deleteById(id);
     }
 }
-

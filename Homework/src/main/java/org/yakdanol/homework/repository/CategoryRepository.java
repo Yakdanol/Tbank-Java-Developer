@@ -1,5 +1,7 @@
 package org.yakdanol.homework.repository;
 
+import org.yakdanol.homework.exception.CategoryNotFoundException;
+import org.yakdanol.homework.exception.EmptyRepositoryException;
 import org.yakdanol.homework.model.Category;
 import org.springframework.stereotype.Repository;
 
@@ -11,11 +13,18 @@ public class CategoryRepository {
     private final ConcurrentMap<Long, Category> categoryMap = new ConcurrentHashMap<>();
 
     public ConcurrentMap<Long, Category> findAll() {
+        if (categoryMap.isEmpty()) {
+            throw new EmptyRepositoryException("Category repository");
+        }
         return categoryMap;
     }
 
     public Category findById(Long id) {
-        return categoryMap.get(id);
+        Category category = categoryMap.get(id);
+        if (category == null) {
+            throw new CategoryNotFoundException(id);
+        }
+        return category;
     }
 
     public Category save(Long id, Category category) {
@@ -24,6 +33,9 @@ public class CategoryRepository {
     }
 
     public void deleteById(Long id) {
+        if (!categoryMap.containsKey(id)) {
+            throw new CategoryNotFoundException(id);
+        }
         categoryMap.remove(id);
     }
 }
