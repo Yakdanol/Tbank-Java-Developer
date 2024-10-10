@@ -5,9 +5,9 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class CurrencyRate {
+public class ApiErrorResponse {
 
-    private String currency;
+    private int code;
 
-    private double rate;
+    private String message;
 }
