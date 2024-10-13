@@ -41,7 +41,20 @@ public class CurrencyService {
             CurrencyRate fromRate = getRateByCode(request.getFromCurrency());
             CurrencyRate toRate = getRateByCode(request.getToCurrency());
 
-            double convertedAmount = (request.getAmount() / fromRate.getRate()) * toRate.getRate();
+            double convertedAmount;
+
+            if ("RUB".equalsIgnoreCase(request.getFromCurrency())) {
+                // Если исходная валюта RUB, делим сумму на курс целевой валюты
+                convertedAmount = request.getAmount() / toRate.getRate();
+            } else if ("RUB".equalsIgnoreCase(request.getToCurrency())) {
+                // Если целевая валюта RUB, умножаем на курс исходной валюты
+                convertedAmount = request.getAmount() * fromRate.getRate();
+            } else {
+                // Конвертация между двумя иностранными валютами
+                // Переводим сумму из fromCurrency в рубли, а потом из рублей в toCurrency
+                convertedAmount = (request.getAmount() * fromRate.getRate()) / toRate.getRate();
+            }
+
             log.info("Conversion result: {} {} to {} = {}", request.getAmount(), request.getFromCurrency(), request.getToCurrency(), convertedAmount);
             return new ConversionResponse(request.getFromCurrency(), request.getToCurrency(), convertedAmount);
         } catch (CurrencyNotFoundException e) {
