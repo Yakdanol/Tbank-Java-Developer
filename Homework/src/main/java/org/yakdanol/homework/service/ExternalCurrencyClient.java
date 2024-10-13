@@ -1,12 +1,15 @@
 package org.yakdanol.homework.service;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.reactive.function.client.WebClientResponseException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.yakdanol.homework.exception.CurrencyNotFoundException;
+import org.yakdanol.homework.exception.ServiceUnavailableException;
 import org.yakdanol.homework.model.CurrencyRate;
 import org.yakdanol.homework.util.XmlParser;
 
@@ -27,10 +30,19 @@ public class ExternalCurrencyClient {
     public CurrencyRate fetchRate(String code) {
         log.info("Fetching currency rate for code: {}", code);
 
+        // Специальная обработка для RUB
+        if ("RUB".equalsIgnoreCase(code)) {
+            log.info("Special case: returning default rate for RUB");
+            return new CurrencyRate("RUB", 1.0);
+        }
+
         try {
-            // Выполнение запроса к ЦБ и получение XML ответа
             String response = webClient.get()
                     .retrieve()
+                    .onStatus(HttpStatusCode::is5xxServerError, clientResponse -> {
+                        log.error("Service unavailable, retrying after 1 hour");
+                        throw new ServiceUnavailableException("Service is unavailable, try again later.");
+                    })
                     .bodyToMono(String.class)
                     .block();
 
@@ -39,7 +51,6 @@ public class ExternalCurrencyClient {
                 throw new CurrencyNotFoundException(code);
             }
 
-            // Парсинг XML ответа
             Document document = XmlParser.parseXml(new ByteArrayInputStream(response.getBytes(StandardCharsets.UTF_8)));
             NodeList nodeList = document.getElementsByTagName("Valute");
 
@@ -56,7 +67,12 @@ public class ExternalCurrencyClient {
 
             log.warn("Currency code {} not found in CBR response", code);
             throw new CurrencyNotFoundException(code);
-
+        } catch (WebClientResponseException e) {
+            log.error("Service unavailable: {}", e.getMessage());
+            throw new ServiceUnavailableException("Service is unavailable, try again later.");
+        } catch (CurrencyNotFoundException e) {
+            log.error("Currency not found: {}", e.getMessage());
+            throw e;
         } catch (Exception e) {
             log.error("Error fetching or parsing currency rate: {}", e.getMessage(), e);
             throw new RuntimeException("Failed to fetch currency rate", e);
