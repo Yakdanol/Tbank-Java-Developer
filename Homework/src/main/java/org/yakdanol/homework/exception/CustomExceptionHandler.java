@@ -31,4 +31,13 @@ public class CustomExceptionHandler {
         ApiErrorResponse response = new ApiErrorResponse(500, "Internal server error");
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
     }
+
+    @ExceptionHandler(ServiceUnavailableException.class)
+    public ResponseEntity<ApiErrorResponse> handleServiceUnavailable(ServiceUnavailableException e) {
+        log.error("Service unavailable: {}", e.getMessage());
+        ApiErrorResponse response = new ApiErrorResponse(503, e.getMessage());
+        return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE)
+                .header("Retry-After", "3600") // 1 час в секундах
+                .body(response);
+    }
 }
