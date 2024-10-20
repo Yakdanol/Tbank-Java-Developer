@@ -1,13 +1,13 @@
-package org.yakdanol.task2;
+package org.yakdanol.homework;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Task2ApplicationTests {
+class HomeworkApplicationTests {
 
-    @Test
-    void contextLoads() {
-    }
+	@Test
+	void contextLoads() {
+	}
 
 }

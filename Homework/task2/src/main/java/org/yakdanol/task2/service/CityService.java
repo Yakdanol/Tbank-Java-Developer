@@ -1,11 +1,11 @@
-package org.yakdanol.homework.service;
+package org.yakdanol.task2.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.yakdanol.homework.model.City;
+import org.yakdanol.task2.model.City;
 
 import java.io.File;
 import java.io.FileWriter;

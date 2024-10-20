@@ -1,9 +1,9 @@
-package org.yakdanol.homework;
+package org.yakdanol.task2;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.yakdanol.homework.service.CityService;
+import org.yakdanol.task2.service.CityService;
 
 import java.io.File;
 import java.io.IOException;
