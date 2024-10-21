@@ -1,4 +1,4 @@
-package org.yakdanol.homework;
+package org.yakdanol.task7;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -8,8 +8,8 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.yakdanol.homework.exception.ServiceUnavailableException;
-import org.yakdanol.homework.service.CurrencyService;
+import org.yakdanol.task7.exception.ServiceUnavailableException;
+import org.yakdanol.task7.service.CurrencyService;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;

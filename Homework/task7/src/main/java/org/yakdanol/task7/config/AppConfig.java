@@ -1,4 +1,4 @@
-package org.yakdanol.homework.config;
+package org.yakdanol.task7.config;
 
 import com.github.benmanes.caffeine.cache.Caffeine;
 import lombok.extern.slf4j.Slf4j;

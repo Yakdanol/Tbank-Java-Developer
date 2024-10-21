@@ -1,17 +1,17 @@
-package org.yakdanol.homework;
+package org.yakdanol.task7;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.yakdanol.homework.exception.BadRequestException;
-import org.yakdanol.homework.exception.CurrencyNotFoundException;
-import org.yakdanol.homework.model.ConversionRequest;
-import org.yakdanol.homework.model.ConversionResponse;
-import org.yakdanol.homework.model.CurrencyRate;
-import org.yakdanol.homework.service.CurrencyService;
-import org.yakdanol.homework.service.ExternalCurrencyClient;
+import org.yakdanol.task7.exception.BadRequestException;
+import org.yakdanol.task7.exception.CurrencyNotFoundException;
+import org.yakdanol.task7.model.ConversionRequest;
+import org.yakdanol.task7.model.ConversionResponse;
+import org.yakdanol.task7.model.CurrencyRate;
+import org.yakdanol.task7.service.CurrencyService;
+import org.yakdanol.task7.service.ExternalCurrencyClient;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;

@@ -1,4 +1,4 @@
-package org.yakdanol.homework;
+package org.yakdanol.task7;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -6,9 +6,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.web.reactive.function.client.WebClient;
-import org.yakdanol.homework.exception.CurrencyNotFoundException;
-import org.yakdanol.homework.model.CurrencyRate;
-import org.yakdanol.homework.service.ExternalCurrencyClient;
+import org.yakdanol.task7.exception.CurrencyNotFoundException;
+import org.yakdanol.task7.model.CurrencyRate;
+import org.yakdanol.task7.service.ExternalCurrencyClient;
 import reactor.core.publisher.Mono;
 
 import static org.junit.jupiter.api.Assertions.*;

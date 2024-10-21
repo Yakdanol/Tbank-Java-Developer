@@ -1,4 +1,4 @@
-package org.yakdanol.homework.controller;
+package org.yakdanol.task7.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -11,10 +11,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import org.yakdanol.homework.model.ConversionRequest;
-import org.yakdanol.homework.model.ConversionResponse;
-import org.yakdanol.homework.model.CurrencyRate;
-import org.yakdanol.homework.service.CurrencyService;
+import org.yakdanol.task7.model.ConversionRequest;
+import org.yakdanol.task7.model.ConversionResponse;
+import org.yakdanol.task7.model.CurrencyRate;
+import org.yakdanol.task7.service.CurrencyService;
 
 @Slf4j
 @RestController

@@ -1,4 +1,4 @@
-package org.yakdanol.homework.exception;
+package org.yakdanol.task7.exception;
 
 import lombok.Getter;
 

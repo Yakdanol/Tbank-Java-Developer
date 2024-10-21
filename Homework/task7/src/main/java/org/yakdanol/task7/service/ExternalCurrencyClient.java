@@ -1,4 +1,4 @@
-package org.yakdanol.homework.service;
+package org.yakdanol.task7.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatusCode;
@@ -8,10 +8,10 @@ import org.springframework.web.reactive.function.client.WebClientResponseExcepti
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
-import org.yakdanol.homework.exception.CurrencyNotFoundException;
-import org.yakdanol.homework.exception.ServiceUnavailableException;
-import org.yakdanol.homework.model.CurrencyRate;
-import org.yakdanol.homework.util.XmlParser;
+import org.yakdanol.task7.exception.CurrencyNotFoundException;
+import org.yakdanol.task7.exception.ServiceUnavailableException;
+import org.yakdanol.task7.model.CurrencyRate;
+import org.yakdanol.task7.util.XmlParser;
 
 import java.io.ByteArrayInputStream;
 import java.nio.charset.StandardCharsets;

@@ -1,4 +1,4 @@
-package org.yakdanol.homework.util;
+package org.yakdanol.task7.util;
 
 import lombok.extern.slf4j.Slf4j;
 import org.w3c.dom.Document;

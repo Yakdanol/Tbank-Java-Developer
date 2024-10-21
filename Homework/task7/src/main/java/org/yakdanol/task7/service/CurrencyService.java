@@ -1,10 +1,10 @@
-package org.yakdanol.homework.service;
+package org.yakdanol.task7.service;
 
-import org.yakdanol.homework.model.ConversionRequest;
-import org.yakdanol.homework.model.ConversionResponse;
-import org.yakdanol.homework.model.CurrencyRate;
-import org.yakdanol.homework.exception.CurrencyNotFoundException;
-import org.yakdanol.homework.exception.BadRequestException;
+import org.yakdanol.task7.model.ConversionRequest;
+import org.yakdanol.task7.model.ConversionResponse;
+import org.yakdanol.task7.model.CurrencyRate;
+import org.yakdanol.task7.exception.CurrencyNotFoundException;
+import org.yakdanol.task7.exception.BadRequestException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;

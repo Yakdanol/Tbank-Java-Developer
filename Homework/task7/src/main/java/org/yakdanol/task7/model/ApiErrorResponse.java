@@ -1,4 +1,4 @@
-package org.yakdanol.homework.model;
+package org.yakdanol.task7.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
