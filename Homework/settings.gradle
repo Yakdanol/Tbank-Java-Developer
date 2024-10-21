@@ -1,2 +1,2 @@
 rootProject.name = 'Homework'
-include 'task2', 'task3', 'task5_6'
+include 'task2', 'task3', 'task5_6', 'task7'
