@@ -1,8 +1,8 @@
-package org.yakdanol.homework;
+package org.yakdanol.task3;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.yakdanol.homework.model.CustomLinkedList;
+import org.yakdanol.task3.model.CustomLinkedList;
 
 import java.util.ArrayList;
 import java.util.List;

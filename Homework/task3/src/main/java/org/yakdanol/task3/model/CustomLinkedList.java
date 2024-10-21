@@ -1,4 +1,4 @@
-package org.yakdanol.homework.model;
+package org.yakdanol.task3.model;
 
 import java.util.List;
 
