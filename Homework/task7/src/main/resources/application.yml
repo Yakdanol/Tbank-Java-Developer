@@ -1,0 +1,5 @@
+currency:
+  url: "http://www.cbr.ru/scripts/XML_daily.asp"
+spring:
+  cache:
+    type: simple
