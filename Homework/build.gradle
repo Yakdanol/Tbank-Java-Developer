@@ -25,6 +25,7 @@ repositories {
 
 dependencies {
 	implementation project(':task2')
+	implementation project(':task3')
 
 	implementation 'org.springframework.boot:spring-boot-starter'
 	compileOnly 'org.projectlombok:lombok'
