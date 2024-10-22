@@ -29,7 +29,7 @@ public class KudagoInitializer {
     private final ExecutorService fixedThreadPool;
 
     public KudagoInitializer(CategoryRepository categoryRepository, LocationRepository locationRepository,
-                             @Qualifier("fixedThreadPool") ExecutorService fixedThreadPool) {
+                             @Qualifier("fixedThreadPoolKudagoInitializer") ExecutorService fixedThreadPool) {
         this.categoryRepository = categoryRepository;
         this.locationRepository = locationRepository;
         this.fixedThreadPool = fixedThreadPool;
