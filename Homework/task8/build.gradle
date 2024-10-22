@@ -19,6 +19,22 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
+	// Lombok
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+
+	// AssertJ
+	testImplementation 'org.assertj:assertj-core:3.26.3'
+
+	// Testing
+	testImplementation 'org.testcontainers:testcontainers:1.20.2'
+	testImplementation 'org.mockito:mockito-core'
+	testImplementation 'org.testcontainers:junit-jupiter:1.20.1'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
