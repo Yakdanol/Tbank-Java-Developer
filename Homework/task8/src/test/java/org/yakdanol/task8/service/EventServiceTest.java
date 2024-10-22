@@ -37,8 +37,8 @@ public class EventServiceTest {
                 .thenReturn(CompletableFuture.completedFuture(1000.0));
 
         // Mocking получение событий
-        Event event1 = new Event("Concert", "Live concert by a popular band", 500.0, "2024-19-10");
-        Event event2 = new Event("Theater", "Drama performance", 1500.0, "2023-18-10");
+        Event event1 = new Event("Concert", "Live concert by a popular band", 500.0, "2024-10-10");
+        Event event2 = new Event("Theater", "Drama performance", 1500.0, "2024-11-10");
         when(dataFetcher.fetchEvents(any(), any()))
                 .thenReturn(CompletableFuture.completedFuture(Arrays.asList(event1, event2)));
 
@@ -54,7 +54,7 @@ public class EventServiceTest {
                 .thenReturn(CompletableFuture.completedFuture(500.0));
 
         // Mocking получение событий
-        Event event1 = new Event("Concert", "Live concert by a popular band", 1000.0, "2024-19-10");
+        Event event1 = new Event("Concert", "Live concert by a popular band", 1000.0, "2024-10-10");
         when(dataFetcher.fetchEvents(any(), any()))
                 .thenReturn(CompletableFuture.completedFuture(List.of(event1)));
 
