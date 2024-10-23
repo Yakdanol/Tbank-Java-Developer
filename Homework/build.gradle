@@ -26,6 +26,7 @@ repositories {
 dependencies {
 	implementation project(':task2')
 	implementation project(':task3')
+	implementation project(':task4')
 	implementation project(':task5_6')
 	implementation project(':task7')
 	implementation project(':task8')
