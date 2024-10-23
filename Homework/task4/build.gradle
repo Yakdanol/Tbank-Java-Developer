@@ -25,13 +25,17 @@ dependencies {
     // kotlinx.serialization for JSON deserialization
     implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.1"
 
+    // Coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.9.0")
+
     // SLF4J for logging
     implementation "org.slf4j:slf4j-api:2.0.16"
     implementation "org.slf4j:slf4j-simple:2.0.16"
 
     // Testing
-    testImplementation "org.jetbrains.kotlin:kotlin-test"
-    testImplementation "org.jetbrains.kotlin:kotlin-test-junit"
+    testImplementation("org.jetbrains.kotlin:kotlin-test")
+    testImplementation "org.jetbrains.kotlin:kotlin-test-junit5"
 }
 
 test {
