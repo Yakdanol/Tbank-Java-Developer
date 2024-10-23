@@ -10,6 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import java.util.concurrent.CompletableFuture;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -64,5 +66,21 @@ public class CurrencyService {
             log.error("Unexpected error during currency conversion: {}", e.getMessage());
             throw new RuntimeException("Conversion failed", e);
         }
+    }
+
+    // Новый метод для асинхронной конвертации валюты
+    public CompletableFuture<Double> convertToRubleAsync(double amount, String currencyCode) {
+        return CompletableFuture.supplyAsync(() -> {
+            log.info("Starting async conversion to RUB for currency: {}", currencyCode);
+            try {
+                CurrencyRate rate = getRateByCode(currencyCode);
+                double convertedAmount = amount * rate.getRate();
+                log.info("Converted {} {} to {} RUB", amount, currencyCode, convertedAmount);
+                return convertedAmount;
+            } catch (Exception e) {
+                log.error("Error during async currency conversion: {}", e.getMessage());
+                throw new RuntimeException("Currency conversion failed", e);
+            }
+        });
     }
 }
