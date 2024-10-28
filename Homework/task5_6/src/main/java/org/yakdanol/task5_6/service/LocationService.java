@@ -1,39 +1,75 @@
 package org.yakdanol.task5_6.service;
 
-import org.yakdanol.task5_6.model.Location;
-import org.yakdanol.task5_6.repository.LocationRepository;
+import lombok.extern.slf4j.Slf4j;
+import org.yakdanol.task5_6.dto.LocationDTO;
+import org.yakdanol.task5_6.model.entity.Location;
+import org.yakdanol.task5_6.model.repository.LocationRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.concurrent.ConcurrentMap;
+import jakarta.persistence.EntityNotFoundException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 public class LocationService {
+
     private final LocationRepository locationRepository;
 
+    @Autowired
     public LocationService(LocationRepository locationRepository) {
         this.locationRepository = locationRepository;
     }
 
-    public ConcurrentMap<String, Location> getAllLocations() {
-        return locationRepository.findAll();
+    public LocationDTO createLocation(LocationDTO locationDTO) {
+        log.info("Creating new location with slug: {}", locationDTO.getSlug());
+
+        Location location = new Location();
+        location.setSlug(locationDTO.getSlug());
+        location.setName(locationDTO.getName());
+
+        Location savedLocation = locationRepository.save(location);
+        log.info("Location created successfully with ID: {}", savedLocation.getId());
+
+        return convertToDTO(savedLocation);
     }
 
-    public Location getLocationBySlug(String slug) {
-        return locationRepository.findBySlug(slug);
+    public LocationDTO findLocationById(Long id) {
+        log.info("Searching for location with ID: {}", id);
+
+        Location location = locationRepository.findById(id)
+                .orElseThrow(() -> {
+                    log.error("Location not found with ID: {}", id);
+                    return new EntityNotFoundException("Location not found with ID: " + id);
+                });
+
+        return new LocationDTO(location.getId(), location.getSlug(), location.getName());
     }
 
-    public Location createLocation(String slug, Location location) {
-        return locationRepository.save(slug, location);
+    public List<LocationDTO> findAllLocations() {
+        log.info("Retrieving all locations");
+
+        List<LocationDTO> locations = locationRepository.findAll().stream()
+                .map(location -> new LocationDTO(location.getId(), location.getSlug(), location.getName()))
+                .collect(Collectors.toList());
+
+        log.info("Found {} locations", locations.size());
+        return locations;
     }
 
-    public Location updateLocation(String slug, Location location) {
-        // Проверка наличия локации с использованием findBySlug
-        locationRepository.findBySlug(slug); // Если локации нет, будет выброшено LocationNotFoundException
+    public void deleteLocationById(Long id) {
+        log.info("Deleting location with ID: {}", id);
+        if (!locationRepository.existsById(id)) {
+            log.error("Location not found with ID: {}", id);
+            throw new EntityNotFoundException("Location not found with ID: " + id);
+        }
 
-        return locationRepository.save(slug, location);
+        locationRepository.deleteById(id);
+        log.info("Location with ID: {} deleted successfully", id);
     }
 
-    public void deleteLocation(String slug) {
-        locationRepository.deleteBySlug(slug);
+    private LocationDTO convertToDTO(Location location) {
+        return new LocationDTO(location.getId(), location.getSlug(), location.getName());
     }
 }
