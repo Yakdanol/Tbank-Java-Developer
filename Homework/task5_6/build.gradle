@@ -28,18 +28,31 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-aop'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 
+	// PostgreSQL
+	implementation 'org.postgresql:postgresql:42.7.4'
+
+	// Liquibase
+	implementation 'org.liquibase:liquibase-core:4.29.2'
+
+	// Hibernate
+	implementation 'org.hibernate:hibernate-validator:8.0.0.Final'
+
+	// Lombok
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 
 	runtimeOnly 'org.aspectj:aspectjweaver:1.9.22'
 	runtimeOnly 'org.aspectj:aspectjrt:1.9.22'
 
+	// Jakarta и Javax
 	implementation 'javax.annotation:javax.annotation-api:1.3.2'
 	implementation 'javax.servlet:javax.servlet-api:4.0.1'
 	compileOnly 'jakarta.servlet:jakarta.servlet-api:6.1.0'
+	implementation 'jakarta.validation:jakarta.validation-api:3.1.0'
 
 	// WireMock
 	testImplementation 'org.wiremock:wiremock:3.9.1'
