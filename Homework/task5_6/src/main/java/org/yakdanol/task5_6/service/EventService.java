@@ -7,13 +7,13 @@ import org.yakdanol.task5_6.model.entity.Event;
 import org.yakdanol.task5_6.model.entity.Location;
 import org.yakdanol.task5_6.model.repository.EventRepository;
 import org.yakdanol.task5_6.model.repository.LocationRepository;
-import org.yakdanol.task5_6.specification.EventSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import jakarta.persistence.EntityNotFoundException;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -53,24 +53,20 @@ public class EventService {
     public List<EventDTO> searchEvents(String name, Long locationId, LocalDateTime fromDate, LocalDateTime toDate) {
         log.info("Searching for events with filters - name: {}, locationId: {}, fromDate: {}, toDate: {}", name, locationId, fromDate, toDate);
 
-        Specification<Event> specification = Specification.where(null);
-
-        if (name != null) {
-            specification = specification.and(EventSpecification.hasName(name));
-        }
-
+        Location location = null;
         if (locationId != null) {
-            Location location = locationRepository.findById(locationId)
+            location = locationRepository.findById(locationId)
                     .orElseThrow(() -> {
                         log.error("Location not found with ID: {}", locationId);
                         return new EntityNotFoundException("Location not found with ID: " + locationId);
                     });
-            specification = specification.and(EventSpecification.hasLocation(location));
         }
 
-        if (fromDate != null && toDate != null) {
-            specification = specification.and(EventSpecification.dateBetween(fromDate, toDate));
-        }
+        // Преобразование `fromDate` и `toDate` в `Date`
+        Date from = (fromDate != null) ? java.sql.Timestamp.valueOf(fromDate) : null;
+        Date to = (toDate != null) ? java.sql.Timestamp.valueOf(toDate) : null;
+
+        Specification<Event> specification = EventRepository.buildEventSpecification(name, location, from, to);
 
         List<EventDTO> events = eventRepository.findAll(specification).stream()
                 .map(event -> new EventDTO(event.getId(), event.getName(), event.getDate(), event.getLocation().getId()))
