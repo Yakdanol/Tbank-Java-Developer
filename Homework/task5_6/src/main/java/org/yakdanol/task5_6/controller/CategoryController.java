@@ -1,53 +1,46 @@
 package org.yakdanol.task5_6.controller;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 import org.yakdanol.task5_6.dto.CategoryDTO;
 import org.yakdanol.task5_6.service.CategoryService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.Valid;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/places/categories")
+@RequiredArgsConstructor
 @Slf4j
 public class CategoryController {
 
     private final CategoryService categoryService;
 
-    @Autowired
-    public CategoryController(CategoryService categoryService) {
-        this.categoryService = categoryService;
-    }
-
     @PostMapping
-    public ResponseEntity<CategoryDTO> createCategory(@RequestBody @Valid CategoryDTO categoryDTO) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public CategoryDTO createCategory(@RequestBody @Valid CategoryDTO categoryDTO) {
         log.info("Received request to create category: {}", categoryDTO);
-        CategoryDTO createdCategory = categoryService.createCategory(categoryDTO);
-        return new ResponseEntity<>(createdCategory, HttpStatus.CREATED);
+        return categoryService.createCategory(categoryDTO);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CategoryDTO> getCategoryById(@PathVariable Long id) {
+    public CategoryDTO getCategoryById(@PathVariable Long id) {
         log.info("Received request to get category by ID: {}", id);
-        CategoryDTO categoryDTO = categoryService.findCategoryById(id);
-        return new ResponseEntity<>(categoryDTO, HttpStatus.OK);
+        return categoryService.findCategoryById(id);
     }
 
     @GetMapping
-    public ResponseEntity<List<CategoryDTO>> getAllCategories() {
+    public List<CategoryDTO> getAllCategories() {
         log.info("Received request to get all categories");
-        List<CategoryDTO> categories = categoryService.findAllCategories();
-        return new ResponseEntity<>(categories, HttpStatus.OK);
+        return categoryService.findAllCategories();
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteCategoryById(@PathVariable Long id) {
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteCategoryById(@PathVariable Long id) {
         log.info("Received request to delete category by ID: {}", id);
         categoryService.deleteCategoryById(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
