@@ -21,6 +21,7 @@ public class KudagoInitializer {
 
     private static final String CATEGORIES_API_URL = "https://kudago.com/public-api/v1.4/place-categories/";
     private static final String LOCATIONS_API_URL = "https://kudago.com/public-api/v1.4/locations/";
+    private static final int MAX_RETRIES = 3;
 
     private final CategoryRepository categoryRepository;
     private final LocationRepository locationRepository;
@@ -37,69 +38,97 @@ public class KudagoInitializer {
     public void init() {
         log.info("Starting data initialization from KudaGo API...");
 
-        try {
-            // Инициализация категорий
-            initializeCategories();
-
-            // Инициализация локаций
-            initializeLocations();
-
-        } catch (Exception e) {
-            log.error("Error during initialization from KudaGo API: ", e);
-        }
+        initializeCategories();
+        initializeLocations();
 
         log.info("Data initialization completed.");
     }
 
     private void initializeCategories() {
-        log.info("Fetching categories from KudaGo API...");
-        try {
-            CategoryDTO[] categoriesDTO = restTemplate.getForObject(CATEGORIES_API_URL, CategoryDTO[].class);
+        int retryCount = 0;
+        boolean success = false;
 
-            if (categoriesDTO != null && categoriesDTO.length > 0) {
-                Arrays.stream(categoriesDTO).forEach(this::saveCategory);
-                log.info("Categories initialized successfully with {} entries.", categoriesDTO.length);
-            } else {
-                log.warn("No categories retrieved from KudaGo API.");
+        while (retryCount < MAX_RETRIES && !success) {
+            try {
+                log.info("Fetching categories from KudaGo API...");
+                CategoryDTO[] categoriesDTO = restTemplate.getForObject(CATEGORIES_API_URL, CategoryDTO[].class);
+
+                if (categoriesDTO != null && categoriesDTO.length > 0) {
+                    Arrays.stream(categoriesDTO).forEach(this::saveCategory);
+                    log.info("Categories initialized successfully with {} entries.", categoriesDTO.length);
+                    success = true;
+                } else {
+                    log.warn("No categories retrieved from KudaGo API.");
+                    success = true; // Завершаем попытки, если данные отсутствуют, чтобы избежать бесконечных повторов
+                }
+            } catch (HttpClientErrorException e) {
+                retryCount++;
+                log.error("Error fetching categories from KudaGo API. Attempt {} of {}. Error: {}", retryCount, MAX_RETRIES, e.getMessage());
+
+                if (retryCount >= MAX_RETRIES) {
+                    log.error("Failed to fetch categories after {} attempts", MAX_RETRIES);
+                }
+            } catch (Exception e) {
+                log.error("Unexpected error while fetching categories: {}", e.getMessage());
+                break; // Завершаем попытки при непредвиденной ошибке
             }
-        } catch (HttpClientErrorException e) {
-            log.error("Error fetching categories from KudaGo API: {}", e.getMessage());
         }
     }
 
     private void saveCategory(CategoryDTO categoryDTO) {
-        Category category = new Category();
-        category.setSlug(categoryDTO.getSlug());
-        category.setName(categoryDTO.getName());
+        try {
+            Category category = new Category();
+            category.setSlug(categoryDTO.getSlug());
+            category.setName(categoryDTO.getName());
 
-        // Сохранение категории в репозитории
-        categoryRepository.save(category);
-        log.info("Category saved: {}", category);
+            categoryRepository.save(category);
+            log.info("Category saved: {}", category);
+        } catch (Exception e) {
+            log.error("Error saving category: {}", e.getMessage());
+        }
     }
 
     private void initializeLocations() {
-        log.info("Fetching locations from KudaGo API...");
-        try {
-            LocationDTO[] locationsDTO = restTemplate.getForObject(LOCATIONS_API_URL, LocationDTO[].class);
+        int retryCount = 0;
+        boolean success = false;
 
-            if (locationsDTO != null && locationsDTO.length > 0) {
-                Arrays.stream(locationsDTO).forEach(this::saveLocation);
-                log.info("Locations initialized successfully with {} entries.", locationsDTO.length);
-            } else {
-                log.warn("No locations retrieved from KudaGo API.");
+        while (retryCount < MAX_RETRIES && !success) {
+            try {
+                log.info("Fetching locations from KudaGo API...");
+                LocationDTO[] locationsDTO = restTemplate.getForObject(LOCATIONS_API_URL, LocationDTO[].class);
+
+                if (locationsDTO != null && locationsDTO.length > 0) {
+                    Arrays.stream(locationsDTO).forEach(this::saveLocation);
+                    log.info("Locations initialized successfully with {} entries.", locationsDTO.length);
+                    success = true;
+                } else {
+                    log.warn("No locations retrieved from KudaGo API.");
+                    success = true; // Завершаем попытки, если данные отсутствуют, чтобы избежать бесконечных повторов
+                }
+            } catch (HttpClientErrorException e) {
+                retryCount++;
+                log.error("Error fetching locations from KudaGo API. Attempt {} of {}. Error: {}", retryCount, MAX_RETRIES, e.getMessage());
+
+                if (retryCount >= MAX_RETRIES) {
+                    log.error("Failed to fetch locations after {} attempts", MAX_RETRIES);
+                }
+            } catch (Exception e) {
+                log.error("Unexpected error while fetching locations: {}", e.getMessage());
+                break; // Завершаем попытки при непредвиденной ошибке
             }
-        } catch (HttpClientErrorException e) {
-            log.error("Error fetching locations from KudaGo API: {}", e.getMessage());
         }
     }
 
     private void saveLocation(LocationDTO locationDTO) {
-        Location location = new Location();
-        location.setSlug(locationDTO.getSlug());
-        location.setName(locationDTO.getName());
+        try {
+            Location location = new Location();
+            location.setSlug(locationDTO.getSlug());
+            location.setName(locationDTO.getName());
 
-        // Сохранение локации в репозитории
-        locationRepository.save(location);
-        log.info("Location saved: {}", location);
+            locationRepository.save(location);
+            log.info("Location saved: {}", location);
+        } catch (Exception e) {
+            log.error("Error saving location: {}", e.getMessage());
+        }
     }
 }
