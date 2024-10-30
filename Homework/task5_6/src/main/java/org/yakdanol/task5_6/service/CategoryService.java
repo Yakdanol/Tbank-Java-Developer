@@ -4,6 +4,7 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.yakdanol.task5_6.dto.CategoryDTO;
 import org.yakdanol.task5_6.model.entity.Category;
 import org.yakdanol.task5_6.model.repository.CategoryRepository;
@@ -22,6 +23,7 @@ public class CategoryService {
         this.categoryRepository = categoryRepository;
     }
 
+    @Transactional
     public CategoryDTO createCategory(CategoryDTO categoryDTO) {
         log.info("Creating new category with slug: {}", categoryDTO.getSlug());
 
@@ -44,22 +46,24 @@ public class CategoryService {
                     return new EntityNotFoundException("Category not found with ID: " + id);
                 });
 
-        return new CategoryDTO(category.getId(), category.getSlug(), category.getName());
+        return convertToDTO(category);
     }
 
     public List<CategoryDTO> findAllCategories() {
         log.info("Retrieving all categories");
 
         List<CategoryDTO> categories = categoryRepository.findAll().stream()
-                .map(category -> new CategoryDTO(category.getId(), category.getSlug(), category.getName()))
+                .map(this::convertToDTO)
                 .collect(Collectors.toList());
 
         log.info("Found {} categories", categories.size());
         return categories;
     }
 
+    @Transactional
     public void deleteCategoryById(Long id) {
         log.info("Deleting category with ID: {}", id);
+
         if (!categoryRepository.existsById(id)) {
             log.error("Category not found with ID: {}", id);
             throw new EntityNotFoundException("Category not found with ID: " + id);

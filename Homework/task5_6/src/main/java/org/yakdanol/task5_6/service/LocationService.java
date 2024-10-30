@@ -1,6 +1,7 @@
 package org.yakdanol.task5_6.service;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.transaction.annotation.Transactional;
 import org.yakdanol.task5_6.dto.LocationDTO;
 import org.yakdanol.task5_6.model.entity.Location;
 import org.yakdanol.task5_6.model.repository.LocationRepository;
@@ -22,6 +23,7 @@ public class LocationService {
         this.locationRepository = locationRepository;
     }
 
+    @Transactional
     public LocationDTO createLocation(LocationDTO locationDTO) {
         log.info("Creating new location with slug: {}", locationDTO.getSlug());
 
@@ -44,22 +46,24 @@ public class LocationService {
                     return new EntityNotFoundException("Location not found with ID: " + id);
                 });
 
-        return new LocationDTO(location.getId(), location.getSlug(), location.getName());
+        return convertToDTO(location);
     }
 
     public List<LocationDTO> findAllLocations() {
         log.info("Retrieving all locations");
 
         List<LocationDTO> locations = locationRepository.findAll().stream()
-                .map(location -> new LocationDTO(location.getId(), location.getSlug(), location.getName()))
+                .map(this::convertToDTO)
                 .collect(Collectors.toList());
 
         log.info("Found {} locations", locations.size());
         return locations;
     }
 
+    @Transactional
     public void deleteLocationById(Long id) {
         log.info("Deleting location with ID: {}", id);
+
         if (!locationRepository.existsById(id)) {
             log.error("Location not found with ID: {}", id);
             throw new EntityNotFoundException("Location not found with ID: " + id);

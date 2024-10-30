@@ -1,6 +1,7 @@
 package org.yakdanol.task5_6.service;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.transaction.annotation.Transactional;
 import org.yakdanol.task5_6.dto.EventDTO;
 import org.yakdanol.task5_6.exception.EventNotFoundException;
 import org.yakdanol.task5_6.model.entity.Event;
@@ -30,6 +31,7 @@ public class EventService {
         this.locationRepository = locationRepository;
     }
 
+    @Transactional
     public EventDTO createEvent(EventDTO eventDTO) {
         log.info("Attempting to create event with name: {}", eventDTO.getName());
 
@@ -69,7 +71,7 @@ public class EventService {
         Specification<Event> specification = EventRepository.buildEventSpecification(name, location, from, to);
 
         List<EventDTO> events = eventRepository.findAll(specification).stream()
-                .map(event -> new EventDTO(event.getId(), event.getName(), event.getDate(), event.getLocation().getId()))
+                .map(this::convertToDTO)
                 .collect(Collectors.toList());
 
         log.info("Found {} events matching criteria", events.size());
@@ -85,8 +87,10 @@ public class EventService {
         return convertToDTO(event);
     }
 
+    @Transactional
     public void deleteEventById(Long id) {
         log.info("Deleting event with ID: {}", id);
+
         if (!eventRepository.existsById(id)) {
             log.error("Event not found with ID: {}", id);
             throw new EventNotFoundException(id);
