@@ -1,6 +1,7 @@
 package org.yakdanol.task3.model;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class CustomLinkedList<E> {
     private int size = 0;
@@ -27,6 +28,28 @@ public class CustomLinkedList<E> {
     public int size() {
         return size;
     }
+
+    public CustomIterator<E> iterator() {
+        return new CustomLinkedListIterator();
+    }
+
+    private class CustomLinkedListIterator implements CustomIterator<E> {
+        private Node<E> currentNode = first;
+
+        @Override
+        public boolean hasNext() {
+            return currentNode != null;
+        }
+
+        @Override
+        public E next() {
+            if (!hasNext()) throw new NoSuchElementException();
+            E data = currentNode.item;
+            currentNode = currentNode.next;
+            return data;
+        }
+    }
+
 
     /**
      * Вставляет элемент в конец списка
