@@ -24,6 +24,6 @@ public class Location {
     @Column(nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "location", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "location", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private Set<Event> events = new HashSet<>();
 }

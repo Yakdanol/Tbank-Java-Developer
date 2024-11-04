@@ -62,15 +62,20 @@ public class LocationService {
 
     @Transactional
     public void deleteLocationById(Long id) {
-        log.info("Deleting location with ID: {}", id);
+        log.info("Attempting to delete location with ID: {}", id);
 
-        if (!locationRepository.existsById(id)) {
-            log.error("Location not found with ID: {}", id);
-            throw new EntityNotFoundException("Location not found with ID: " + id);
-        }
+        Location location = locationRepository.findById(id)
+                .orElseThrow(() -> {
+                    log.error("Location not found with ID: {}", id);
+                    return new EntityNotFoundException("Location not found with ID: " + id);
+                });
 
-        locationRepository.deleteById(id);
-        log.info("Location with ID: {} deleted successfully", id);
+        log.info("Found location with ID: {}. Proceeding to delete associated events.", id);
+        int eventCount = location.getEvents().size(); // кол-во связанных событий
+
+        locationRepository.delete(location);
+
+        log.info("Location with ID: {} and {} associated events were successfully deleted.", id, eventCount);
     }
 
     private LocationDTO convertToDTO(Location location) {
