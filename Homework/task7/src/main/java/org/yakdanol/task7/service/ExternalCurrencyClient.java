@@ -14,6 +14,7 @@ import org.yakdanol.task7.model.CurrencyRate;
 import org.yakdanol.task7.util.XmlParser;
 
 import java.io.ByteArrayInputStream;
+import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 
 @Slf4j
@@ -33,7 +34,7 @@ public class ExternalCurrencyClient {
         // Специальная обработка для RUB
         if ("RUB".equalsIgnoreCase(code)) {
             log.info("Special case: returning default rate for RUB");
-            return new CurrencyRate("RUB", 1.0);
+            return new CurrencyRate("RUB", BigDecimal.valueOf(1.0));
         }
 
         try {
@@ -59,7 +60,7 @@ public class ExternalCurrencyClient {
                 String charCode = element.getElementsByTagName("CharCode").item(0).getTextContent();
 
                 if (charCode.equalsIgnoreCase(code)) {
-                    double rate = Double.parseDouble(element.getElementsByTagName("Value").item(0).getTextContent().replace(",", "."));
+                    BigDecimal rate = new BigDecimal(element.getElementsByTagName("Value").item(0).getTextContent().replace(",", "."));
                     log.info("Found rate for currency {}: {}", code, rate);
                     return new CurrencyRate(charCode, rate);
                 }
