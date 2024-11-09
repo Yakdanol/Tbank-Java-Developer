@@ -3,6 +3,7 @@ package org.yakdanol.task5_6.service;
 import lombok.extern.slf4j.Slf4j;
 import org.yakdanol.task5_6.dto.EventDTO;
 import org.yakdanol.task5_6.exception.EventNotFoundException;
+import org.yakdanol.task5_6.model.dao.EventSpecificationDAO;
 import org.yakdanol.task5_6.model.entity.Event;
 import org.yakdanol.task5_6.model.entity.Location;
 import org.yakdanol.task5_6.model.repository.EventRepository;
@@ -23,11 +24,13 @@ public class EventService {
 
     private final EventRepository eventRepository;
     private final LocationRepository locationRepository;
+    private final EventSpecificationDAO eventSpecificationDAO;
 
     @Autowired
-    public EventService(EventRepository eventRepository, LocationRepository locationRepository) {
+    public EventService(EventRepository eventRepository, LocationRepository locationRepository, EventSpecificationDAO eventSpecificationDAO) {
         this.eventRepository = eventRepository;
         this.locationRepository = locationRepository;
+        this.eventSpecificationDAO = eventSpecificationDAO;
     }
 
     public EventDTO createEvent(EventDTO eventDTO) {
@@ -66,7 +69,7 @@ public class EventService {
         Date from = localDateTimeToDate(fromDate);
         Date to = localDateTimeToDate(toDate);
 
-        Specification<Event> specification = EventRepository.buildEventSpecification(name, location, from, to);
+        Specification<Event> specification = eventSpecificationDAO.buildEventSpecification(name, location, from, to);
 
         List<EventDTO> events = eventRepository.findAll(specification).stream()
                 .map(this::convertToDTO)
