@@ -1,7 +1,6 @@
 package org.yakdanol.task5_6.service;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.transaction.annotation.Transactional;
 import org.yakdanol.task5_6.dto.EventDTO;
 import org.yakdanol.task5_6.exception.EventNotFoundException;
 import org.yakdanol.task5_6.model.entity.Event;
@@ -63,9 +62,9 @@ public class EventService {
                     });
         }
 
-        // Преобразование `fromDate` и `toDate` в `Date`
-        Date from = (fromDate != null) ? java.sql.Timestamp.valueOf(fromDate) : null;
-        Date to = (toDate != null) ? java.sql.Timestamp.valueOf(toDate) : null;
+        // Преобразование `fromDate` и `toDate` в Date
+        Date from = localDateTimeToDate(fromDate);
+        Date to = localDateTimeToDate(toDate);
 
         Specification<Event> specification = EventRepository.buildEventSpecification(name, location, from, to);
 
@@ -100,5 +99,9 @@ public class EventService {
 
     private EventDTO convertToDTO(Event event) {
         return new EventDTO(event.getId(), event.getName(), event.getDate(), event.getLocation().getId());
+    }
+
+    private Date localDateTimeToDate(LocalDateTime localDateTime) {
+        return (localDateTime != null) ? java.sql.Timestamp.valueOf(localDateTime) : null;
     }
 }
