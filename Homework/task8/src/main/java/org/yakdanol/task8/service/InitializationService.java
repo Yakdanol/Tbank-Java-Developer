@@ -25,7 +25,7 @@ public class InitializationService {
     private final LocationRepository locationRepository;
     private final RestTemplate restTemplate = new RestTemplate();
 
-    public InitializationService(@Qualifier("fixedThreadPool") ExecutorService fixedThreadPool,
+    public InitializationService(@Qualifier("task8FixedThreadPool") ExecutorService fixedThreadPool,
                                  CategoryRepository categoryRepository,
                                  LocationRepository locationRepository) {
         this.fixedThreadPool = fixedThreadPool;

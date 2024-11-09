@@ -13,7 +13,7 @@ public class ThreadPoolConfig {
     @Value("${fixed.threadpool.size}")
     private int fixedThreadPoolSize;
 
-    @Bean(name = "fixedThreadPool")
+    @Bean(name = "task8FixedThreadPool")
     public ExecutorService fixedThreadPool() {
         return Executors.newFixedThreadPool(fixedThreadPoolSize, runnable -> {
             Thread thread = new Thread(runnable);
