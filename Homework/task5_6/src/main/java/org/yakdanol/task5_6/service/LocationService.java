@@ -23,7 +23,6 @@ public class LocationService {
         this.locationRepository = locationRepository;
     }
 
-    @Transactional
     public LocationDTO createLocation(LocationDTO locationDTO) {
         log.info("Creating new location with slug: {}", locationDTO.getSlug());
 
@@ -60,7 +59,6 @@ public class LocationService {
         return locations;
     }
 
-    @Transactional
     public void deleteLocationById(Long id) {
         log.info("Attempting to delete location with ID: {}", id);
 
@@ -74,7 +72,6 @@ public class LocationService {
         int eventCount = location.getEvents().size(); // кол-во связанных событий
 
         locationRepository.delete(location);
-
         log.info("Location with ID: {} and {} associated events were successfully deleted.", id, eventCount);
     }
 

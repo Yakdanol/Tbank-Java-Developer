@@ -31,7 +31,6 @@ public class EventService {
         this.locationRepository = locationRepository;
     }
 
-    @Transactional
     public EventDTO createEvent(EventDTO eventDTO) {
         log.info("Attempting to create event with name: {}", eventDTO.getName());
 
@@ -87,7 +86,6 @@ public class EventService {
         return convertToDTO(event);
     }
 
-    @Transactional
     public void deleteEventById(Long id) {
         log.info("Deleting event with ID: {}", id);
 

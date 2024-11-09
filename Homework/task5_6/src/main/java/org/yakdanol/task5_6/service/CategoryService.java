@@ -23,7 +23,6 @@ public class CategoryService {
         this.categoryRepository = categoryRepository;
     }
 
-    @Transactional
     public CategoryDTO createCategory(CategoryDTO categoryDTO) {
         log.info("Creating new category with slug: {}", categoryDTO.getSlug());
 
@@ -60,7 +59,6 @@ public class CategoryService {
         return categories;
     }
 
-    @Transactional
     public void deleteCategoryById(Long id) {
         log.info("Deleting category with ID: {}", id);
 
@@ -68,6 +66,7 @@ public class CategoryService {
             log.error("Category not found with ID: {}", id);
             throw new EntityNotFoundException("Category not found with ID: " + id);
         }
+
         categoryRepository.deleteById(id);
         log.info("Category with ID: {} deleted successfully", id);
     }
