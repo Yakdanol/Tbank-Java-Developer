@@ -15,7 +15,8 @@ import java.util.Set;
 public class Location {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "location_sequence")
+    @SequenceGenerator(name = "location_sequence", sequenceName = "location_seq")
     private Long id;
 
     @Column(nullable = false)

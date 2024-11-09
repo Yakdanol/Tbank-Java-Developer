@@ -14,7 +14,8 @@ import java.time.LocalDateTime;
 public class Event {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "event_sequence")
+    @SequenceGenerator(name = "event_sequence", sequenceName = "event_seq")
     private Long id;
 
     @Column(nullable = false)
