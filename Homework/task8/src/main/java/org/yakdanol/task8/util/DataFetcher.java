@@ -16,6 +16,8 @@ public class DataFetcher {
 
     private final RestTemplate restTemplate = new RestTemplate();
 
+    private static final String EVENTS_API_URL = "https://kudago.com/public-api/v1.4/events/?";
+
     public CompletableFuture<List<Event>> fetchEvents(String dateFrom, String dateTo) {
         return CompletableFuture.supplyAsync(() -> {
             try {
@@ -36,7 +38,7 @@ public class DataFetcher {
     }
 
     private String buildEventUrl(String dateFrom, String dateTo) {
-        StringBuilder urlBuilder = new StringBuilder("https://kudago.com/public-api/v1.4/events/?" );
+        StringBuilder urlBuilder = new StringBuilder(EVENTS_API_URL);
         if (dateFrom != null && !dateFrom.isEmpty()) {
             urlBuilder.append("date_from=").append(dateFrom).append("&");
         }
