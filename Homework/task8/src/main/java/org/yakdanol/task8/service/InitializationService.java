@@ -1,48 +1,45 @@
-package org.yakdanol.task5_6.utils;
+package org.yakdanol.task8.service;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.PostConstruct;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
-
 import org.yakdanol.task5_6.repository.CategoryRepository;
 import org.yakdanol.task5_6.repository.LocationRepository;
 import org.yakdanol.task5_6.model.Category;
 import org.yakdanol.task5_6.model.Location;
-import org.springframework.web.client.RestTemplate;
 
 @Slf4j
-@Component
-@ComponentScan(basePackages = {"org.yakdanol.task8"})
-public class KudagoInitializer {
+@Service
+public class InitializationService {
 
     private static final String CATEGORIES_API_URL = "https://kudago.com/public-api/v1.4/place-categories/";
     private static final String LOCATIONS_API_URL = "https://kudago.com/public-api/v1.4/locations/";
 
+    private final ExecutorService fixedThreadPool;
     private final CategoryRepository categoryRepository;
     private final LocationRepository locationRepository;
-    private final RestTemplate restTemplate;
-    private final ExecutorService fixedThreadPool;
+    private final RestTemplate restTemplate = new RestTemplate();
 
-    public KudagoInitializer(CategoryRepository categoryRepository, LocationRepository locationRepository,
-                             @Qualifier("fixedThreadPoolKudagoInitializer") ExecutorService fixedThreadPool) {
+    public InitializationService(@Qualifier("task8FixedThreadPool") ExecutorService fixedThreadPool,
+                                 CategoryRepository categoryRepository,
+                                 LocationRepository locationRepository) {
+        this.fixedThreadPool = fixedThreadPool;
         this.categoryRepository = categoryRepository;
         this.locationRepository = locationRepository;
-        this.fixedThreadPool = fixedThreadPool;
-        this.restTemplate = new RestTemplate();
     }
 
     @PostConstruct
-    public void init() {
-        log.info("Starting parallel initialization of data from KudaGo API...");
+    public void initializeData() {
+        log.info("Starting parallel initialization of data...");
 
-        CompletableFuture<Void> categoryFuture = CompletableFuture.runAsync(this::initializeCategories, fixedThreadPool);
-        CompletableFuture<Void> locationFuture = CompletableFuture.runAsync(this::initializeLocations, fixedThreadPool);
-        CompletableFuture.allOf(categoryFuture, locationFuture).join();
+        CompletableFuture<Void> categoriesInit = CompletableFuture.runAsync(this::initializeCategories, fixedThreadPool);
+        CompletableFuture<Void> locationsInit = CompletableFuture.runAsync(this::initializeLocations, fixedThreadPool);
+        CompletableFuture.allOf(categoriesInit, locationsInit).join();
 
         log.info("Data initialization completed successfully.");
     }
