@@ -2,6 +2,7 @@ package org.yakdanol.task5_6.utils;
 
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.yakdanol.task5_6.annotation.LogExecutionTime;
@@ -14,6 +15,8 @@ import org.yakdanol.task5_6.model.repository.LocationRepository;
 
 import javax.annotation.PostConstruct;
 import java.util.Arrays;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutorService;
 
 @Component
 @Slf4j
@@ -26,10 +29,13 @@ public class KudagoInitializer {
     private final CategoryRepository categoryRepository;
     private final LocationRepository locationRepository;
     private final RestTemplate restTemplate;
+    private final ExecutorService fixedThreadPool;
 
-    public KudagoInitializer(CategoryRepository categoryRepository, LocationRepository locationRepository) {
+    public KudagoInitializer(CategoryRepository categoryRepository, LocationRepository locationRepository,
+                             @Qualifier("fixedThreadPoolKudagoInitializer") ExecutorService fixedThreadPool) {
         this.categoryRepository = categoryRepository;
         this.locationRepository = locationRepository;
+        this.fixedThreadPool = fixedThreadPool;
         this.restTemplate = new RestTemplate();
     }
 
@@ -38,8 +44,13 @@ public class KudagoInitializer {
     public void init() {
         log.info("Starting data initialization from KudaGo API...");
 
-        RetryUtils.retryWithMaxAttempts(this::initializeCategories, MAX_RETRIES, "initializeCategories");
-        RetryUtils.retryWithMaxAttempts(this::initializeLocations, MAX_RETRIES, "initializeLocations");
+        CompletableFuture<Void> categoryFuture = CompletableFuture.runAsync(
+                () -> RetryUtils.retryWithMaxAttempts(this::initializeCategories, MAX_RETRIES, "initializeCategories"), fixedThreadPool);
+
+        CompletableFuture<Void> locationFuture = CompletableFuture.runAsync(
+                () -> RetryUtils.retryWithMaxAttempts(this::initializeLocations, MAX_RETRIES, "initializeLocations"), fixedThreadPool);
+
+        CompletableFuture.allOf(categoryFuture, locationFuture).join();
 
         log.info("Data initialization completed.");
     }
