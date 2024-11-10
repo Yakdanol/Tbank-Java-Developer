@@ -1,45 +1,46 @@
 package org.yakdanol.task5_6.controller;
 
-import org.yakdanol.task5_6.annotation.LogExecutionTime;
-import org.yakdanol.task5_6.model.Location;
-import org.yakdanol.task5_6.service.LocationService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.yakdanol.task5_6.dto.LocationDTO;
+import org.yakdanol.task5_6.service.LocationService;
 
-import java.util.concurrent.ConcurrentMap;
+import jakarta.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/locations")
-@LogExecutionTime
+@RequiredArgsConstructor
+@Slf4j
 public class LocationController {
 
     private final LocationService locationService;
 
-    public LocationController(LocationService locationService) {
-        this.locationService = locationService;
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public LocationDTO createLocation(@RequestBody @Valid LocationDTO locationDTO) {
+        log.info("Received request to create location: {}", locationDTO);
+        return locationService.createLocation(locationDTO);
+    }
+
+    @GetMapping("/{id}")
+    public LocationDTO getLocationById(@PathVariable Long id) {
+        log.info("Received request to get location by ID: {}", id);
+        return locationService.findLocationById(id);
     }
 
     @GetMapping
-    public ConcurrentMap<String, Location> getAllLocations() {
-        return locationService.getAllLocations();
+    public List<LocationDTO> getAllLocations() {
+        log.info("Received request to get all locations");
+        return locationService.findAllLocations();
     }
 
-    @GetMapping("/{slug}")
-    public Location getLocationBySlug(@PathVariable String slug) {
-        return locationService.getLocationBySlug(slug);
-    }
-
-    @PostMapping
-    public Location createLocation(@RequestBody Location location) {
-        return locationService.createLocation(location.getSlug(), location);
-    }
-
-    @PutMapping("/{slug}")
-    public Location updateLocation(@PathVariable String slug, @RequestBody Location location) {
-        return locationService.updateLocation(slug, location);
-    }
-
-    @DeleteMapping("/{slug}")
-    public void deleteLocation(@PathVariable String slug) {
-        locationService.deleteLocation(slug);
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteLocationById(@PathVariable Long id) {
+        log.info("Received request to delete location by ID: {}", id);
+        locationService.deleteLocationById(id);
     }
 }

@@ -1,45 +1,46 @@
 package org.yakdanol.task5_6.controller;
 
-import org.yakdanol.task5_6.annotation.LogExecutionTime;
-import org.yakdanol.task5_6.model.Category;
-import org.yakdanol.task5_6.service.CategoryService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.yakdanol.task5_6.dto.CategoryDTO;
+import org.yakdanol.task5_6.service.CategoryService;
 
-import java.util.concurrent.ConcurrentMap;
+import jakarta.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/places/categories")
-@LogExecutionTime
+@RequiredArgsConstructor
+@Slf4j
 public class CategoryController {
 
     private final CategoryService categoryService;
 
-    public CategoryController(CategoryService categoryService) {
-        this.categoryService = categoryService;
-    }
-
-    @GetMapping
-    public ConcurrentMap<Long, Category> getAllCategories() {
-        return categoryService.getAllCategories();
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public CategoryDTO createCategory(@RequestBody @Valid CategoryDTO categoryDTO) {
+        log.info("Received request to create category: {}", categoryDTO);
+        return categoryService.createCategory(categoryDTO);
     }
 
     @GetMapping("/{id}")
-    public Category getCategoryById(@PathVariable Long id) {
-        return categoryService.getCategoryById(id);
+    public CategoryDTO getCategoryById(@PathVariable Long id) {
+        log.info("Received request to get category by ID: {}", id);
+        return categoryService.findCategoryById(id);
     }
 
-    @PostMapping
-    public Category createCategory(@RequestBody Category category) {
-        return categoryService.createCategory(category.getId(), category);
-    }
-
-    @PutMapping("/{id}")
-    public Category updateCategory(@PathVariable Long id, @RequestBody Category category) {
-        return categoryService.updateCategory(id, category);
+    @GetMapping
+    public List<CategoryDTO> getAllCategories() {
+        log.info("Received request to get all categories");
+        return categoryService.findAllCategories();
     }
 
     @DeleteMapping("/{id}")
-    public void deleteCategory(@PathVariable Long id) {
-        categoryService.deleteCategory(id);
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteCategoryById(@PathVariable Long id) {
+        log.info("Received request to delete category by ID: {}", id);
+        categoryService.deleteCategoryById(id);
     }
 }

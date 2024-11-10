@@ -1,27 +1,30 @@
 package org.yakdanol.task5_6.utils;
 
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
+import org.yakdanol.task5_6.annotation.LogExecutionTime;
+import org.yakdanol.task5_6.dto.CategoryDTO;
+import org.yakdanol.task5_6.dto.LocationDTO;
+import org.yakdanol.task5_6.model.entity.Category;
+import org.yakdanol.task5_6.model.entity.Location;
+import org.yakdanol.task5_6.model.repository.CategoryRepository;
+import org.yakdanol.task5_6.model.repository.LocationRepository;
 
 import javax.annotation.PostConstruct;
+import java.util.Arrays;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 
-import org.yakdanol.task5_6.repository.CategoryRepository;
-import org.yakdanol.task5_6.repository.LocationRepository;
-import org.yakdanol.task5_6.model.Category;
-import org.yakdanol.task5_6.model.Location;
-import org.springframework.web.client.RestTemplate;
-
-@Slf4j
 @Component
-@ComponentScan(basePackages = {"org.yakdanol.task8"})
+@Slf4j
 public class KudagoInitializer {
 
     private static final String CATEGORIES_API_URL = "https://kudago.com/public-api/v1.4/place-categories/";
     private static final String LOCATIONS_API_URL = "https://kudago.com/public-api/v1.4/locations/";
+    private static final int MAX_RETRIES = 3;
 
     private final CategoryRepository categoryRepository;
     private final LocationRepository locationRepository;
@@ -37,45 +40,74 @@ public class KudagoInitializer {
     }
 
     @PostConstruct
+    @LogExecutionTime
     public void init() {
-        log.info("Starting parallel initialization of data from KudaGo API...");
+        log.info("Starting data initialization from KudaGo API...");
 
-        CompletableFuture<Void> categoryFuture = CompletableFuture.runAsync(this::initializeCategories, fixedThreadPool);
-        CompletableFuture<Void> locationFuture = CompletableFuture.runAsync(this::initializeLocations, fixedThreadPool);
+        CompletableFuture<Void> categoryFuture = CompletableFuture.runAsync(
+                () -> RetryUtils.retryWithMaxAttempts(this::initializeCategories, MAX_RETRIES, "initializeCategories"), fixedThreadPool);
+
+        CompletableFuture<Void> locationFuture = CompletableFuture.runAsync(
+                () -> RetryUtils.retryWithMaxAttempts(this::initializeLocations, MAX_RETRIES, "initializeLocations"), fixedThreadPool);
+
         CompletableFuture.allOf(categoryFuture, locationFuture).join();
 
-        log.info("Data initialization completed successfully.");
+        log.info("Data initialization completed.");
     }
 
-    private void initializeCategories() {
+    @Transactional
+    protected Void initializeCategories() {
+        log.info("Fetching categories from KudaGo API...");
+        CategoryDTO[] categoriesDTO = restTemplate.getForObject(CATEGORIES_API_URL, CategoryDTO[].class);
+
+        if (categoriesDTO != null && categoriesDTO.length > 0) {
+            Arrays.stream(categoriesDTO).forEach(this::saveCategory);
+            log.info("Categories initialized successfully with {} entries.", categoriesDTO.length);
+        } else {
+            log.warn("No categories retrieved from KudaGo API.");
+        }
+
+        return null;
+    }
+
+    private void saveCategory(CategoryDTO categoryDTO) {
         try {
-            Category[] categories = restTemplate.getForObject(CATEGORIES_API_URL, Category[].class);
-            if (categories != null) {
-                for (Category category : categories) {
-                    categoryRepository.save(category.getId(), category);
-                }
-                log.info("Categories initialized successfully with {} entries.", categories.length);
-            } else {
-                log.warn("No categories retrieved from KudaGo API.");
-            }
+            Category category = new Category();
+            category.setSlug(categoryDTO.getSlug());
+            category.setName(categoryDTO.getName());
+
+            categoryRepository.save(category);
+            log.info("Category saved: {}", category);
         } catch (Exception e) {
-            log.error("Error during category initialization: ", e);
+            log.error("Error saving category: {}", e.getMessage());
         }
     }
 
-    private void initializeLocations() {
+    @Transactional
+    protected Void initializeLocations() {
+        log.info("Fetching locations from KudaGo API...");
+        LocationDTO[] locationsDTO = restTemplate.getForObject(LOCATIONS_API_URL, LocationDTO[].class);
+
+        if (locationsDTO != null && locationsDTO.length > 0) {
+            Arrays.stream(locationsDTO).forEach(this::saveLocation);
+            log.info("Locations initialized successfully with {} entries.", locationsDTO.length);
+        } else {
+            log.warn("No locations retrieved from KudaGo API.");
+        }
+
+        return null;
+    }
+
+    private void saveLocation(LocationDTO locationDTO) {
         try {
-            Location[] locations = restTemplate.getForObject(LOCATIONS_API_URL, Location[].class);
-            if (locations != null) {
-                for (Location location : locations) {
-                    locationRepository.save(location.getSlug(), location);
-                }
-                log.info("Locations initialized successfully with {} entries.", locations.length);
-            } else {
-                log.warn("No locations retrieved from KudaGo API.");
-            }
+            Location location = new Location();
+            location.setSlug(locationDTO.getSlug());
+            location.setName(locationDTO.getName());
+
+            locationRepository.save(location);
+            log.info("Location saved: {}", location);
         } catch (Exception e) {
-            log.error("Error during location initialization: ", e);
+            log.error("Error saving location: {}", e.getMessage());
         }
     }
 }

@@ -1,39 +1,77 @@
 package org.yakdanol.task5_6.service;
 
-import org.yakdanol.task5_6.model.Category;
-import org.yakdanol.task5_6.repository.CategoryRepository;
+import jakarta.persistence.EntityNotFoundException;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.yakdanol.task5_6.dto.CategoryDTO;
+import org.yakdanol.task5_6.model.entity.Category;
+import org.yakdanol.task5_6.model.repository.CategoryRepository;
 
-import java.util.concurrent.ConcurrentMap;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 public class CategoryService {
+
     private final CategoryRepository categoryRepository;
 
+    @Autowired
     public CategoryService(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
     }
 
-    public ConcurrentMap<Long, Category> getAllCategories() {
-        return categoryRepository.findAll();
+    public CategoryDTO createCategory(CategoryDTO categoryDTO) {
+        log.info("Creating new category with slug: {}", categoryDTO.getSlug());
+
+        Category category = new Category();
+        category.setSlug(categoryDTO.getSlug());
+        category.setName(categoryDTO.getName());
+
+        Category savedCategory = categoryRepository.save(category);
+        log.info("Category created successfully with ID: {}", savedCategory.getId());
+
+        return convertToDTO(savedCategory);
     }
 
-    public Category getCategoryById(Long id) {
-        return categoryRepository.findById(id);
+    public CategoryDTO findCategoryById(Long id) {
+        log.info("Searching for category with ID: {}", id);
+
+        Category category = categoryRepository.findById(id)
+                .orElseThrow(() -> {
+                    log.error("Category not found with ID: {}", id);
+                    return new EntityNotFoundException("Category not found with ID: " + id);
+                });
+
+        return convertToDTO(category);
     }
 
-    public Category createCategory(Long id, Category category) {
-        return categoryRepository.save(id, category);
+    public List<CategoryDTO> findAllCategories() {
+        log.info("Retrieving all categories");
+
+        List<CategoryDTO> categories = categoryRepository.findAll().stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
+
+        log.info("Found {} categories", categories.size());
+        return categories;
     }
 
-    public Category updateCategory(Long id, Category category) {
-        // Проверка наличия категории с использованием findById
-        categoryRepository.findById(id); // Если категории нет, будет выброшено CategoryNotFoundException
+    public void deleteCategoryById(Long id) {
+        log.info("Deleting category with ID: {}", id);
 
-        return categoryRepository.save(id, category);
-    }
+        if (!categoryRepository.existsById(id)) {
+            log.error("Category not found with ID: {}", id);
+            throw new EntityNotFoundException("Category not found with ID: " + id);
+        }
 
-    public void deleteCategory(Long id) {
         categoryRepository.deleteById(id);
+        log.info("Category with ID: {} deleted successfully", id);
+    }
+
+    private CategoryDTO convertToDTO(Category category) {
+        return new CategoryDTO(category.getId(), category.getSlug(), category.getName());
     }
 }
