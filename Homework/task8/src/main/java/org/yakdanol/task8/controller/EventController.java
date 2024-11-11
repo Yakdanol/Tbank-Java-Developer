@@ -29,8 +29,8 @@ public class EventController {
             parameters = {
                     @Parameter(name = "budget", description = "Бюджет пользователя, в котором он желает уложиться", required = true),
                     @Parameter(name = "currency", description = "Валюта пользователя (например, USD, EUR)", required = true),
-                    @Parameter(name = "dateFrom", description = "Начало периода, за который пользователя интересуют события", required = false),
-                    @Parameter(name = "dateTo", description = "Конец периода, за который пользователя интересуют события", required = false)
+                    @Parameter(name = "dateFrom", description = "Начало периода, за который пользователя интересуют события"),
+                    @Parameter(name = "dateTo", description = "Конец периода, за который пользователя интересуют события")
             })
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "События найдены и отфильтрованы по бюджету",
@@ -52,8 +52,8 @@ public class EventController {
             parameters = {
                     @Parameter(name = "budget", description = "Бюджет пользователя, в котором он желает уложиться", required = true),
                     @Parameter(name = "currency", description = "Валюта пользователя (например, USD, EUR)", required = true),
-                    @Parameter(name = "dateFrom", description = "Начало периода, за который пользователя интересуют события", required = false),
-                    @Parameter(name = "dateTo", description = "Конец периода, за который пользователя интересуют события", required = false)
+                    @Parameter(name = "dateFrom", description = "Начало периода, за который пользователя интересуют события"),
+                    @Parameter(name = "dateTo", description = "Конец периода, за который пользователя интересуют события")
             })
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "События найдены и отфильтрованы по бюджету",
