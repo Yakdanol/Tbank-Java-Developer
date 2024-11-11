@@ -6,4 +6,5 @@ import org.yakdanol.task5_6.model.entity.Category;
 
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, Long> {
+    void save(Long id, Category category);
 }
