@@ -8,6 +8,7 @@ import org.yakdanol.task8.util.DataFetcher;
 import reactor.core.publisher.Mono;
 import reactor.core.publisher.Flux;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
@@ -25,26 +26,26 @@ public class EventService {
     }
 
     // Реализация с использованием thenAcceptBoth
-    public CompletableFuture<Void> getFilteredEventsUsingThenAcceptBoth(double budget, String currency, String dateFrom, String dateTo) {
-        CompletableFuture<Double> convertedBudgetFuture = currencyService.convertToRubleAsync(budget, currency);
+    public CompletableFuture<Void> getFilteredEventsUsingThenAcceptBoth(BigDecimal budget, String currency, String dateFrom, String dateTo) {
+        CompletableFuture<BigDecimal> convertedBudgetFuture = currencyService.convertToRubleAsync(budget, currency);
         CompletableFuture<List<Event>> eventsFuture = dataFetcher.fetchEvents(dateFrom, dateTo);
 
         return convertedBudgetFuture.thenAcceptBoth(eventsFuture, (convertedBudget, events) -> {
             List<Event> filteredEvents = events.stream()
-                    .filter(event -> event.getPrice() <= convertedBudget)
+                    .filter(event -> (event.getPrice().compareTo(convertedBudget) <= 0))
                     .toList();
             log.info("Filtered {} events within budget.", filteredEvents.size());
         });
     }
 
     // Реализация с использованием Project Reactor
-    public Mono<List<Event>> getFilteredEventsWithReactor(double budget, String currency, String dateFrom, String dateTo) {
-        Mono<Double> convertedBudgetMono = Mono.fromFuture(() -> currencyService.convertToRubleAsync(budget, currency));
+    public Mono<List<Event>> getFilteredEventsWithReactor(BigDecimal budget, String currency, String dateFrom, String dateTo) {
+        Mono<BigDecimal> convertedBudgetMono = Mono.fromFuture(() -> currencyService.convertToRubleAsync(budget, currency));
         Flux<Event> eventsFlux = Flux.fromStream(dataFetcher.fetchEvents(dateFrom, dateTo).join().stream());
 
         return convertedBudgetMono.zipWith(eventsFlux.collectList(), (convertedBudget, events) -> {
             List<Event> filteredEvents = events.stream()
-                    .filter(event -> event.getPrice() <= convertedBudget)
+                    .filter(event -> (event.getPrice().compareTo(convertedBudget) <= 0))
                     .collect(Collectors.toList());
             log.info("Filtered {} events within budget using Reactor.", filteredEvents.size());
             return filteredEvents;

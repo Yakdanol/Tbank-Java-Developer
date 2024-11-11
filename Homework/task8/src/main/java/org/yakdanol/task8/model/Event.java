@@ -3,6 +3,8 @@ package org.yakdanol.task8.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.math.BigDecimal;
+
 @Data
 @AllArgsConstructor
 public class Event {
@@ -11,7 +13,7 @@ public class Event {
 
     private String description;
 
-    private double price;
+    private BigDecimal price;
 
     private String date;
 }

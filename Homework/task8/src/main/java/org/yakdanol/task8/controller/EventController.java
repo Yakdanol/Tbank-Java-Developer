@@ -14,6 +14,7 @@ import org.yakdanol.task8.model.Event;
 import org.yakdanol.task8.service.EventService;
 import reactor.core.publisher.Mono;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
@@ -39,7 +40,7 @@ public class EventController {
             @ApiResponse(responseCode = "500", description = "Внутренняя ошибка сервера", content = @Content)
     })
     @GetMapping("/events")
-    public CompletableFuture<Void> getFilteredEvents(@RequestParam double budget,
+    public CompletableFuture<Void> getFilteredEvents(@RequestParam BigDecimal budget,
                                                      @RequestParam String currency,
                                                      @RequestParam(required = false) String dateFrom,
                                                      @RequestParam(required = false) String dateTo) {
@@ -62,7 +63,7 @@ public class EventController {
             @ApiResponse(responseCode = "500", description = "Внутренняя ошибка сервера", content = @Content)
     })
     @GetMapping("/events/reactor")
-    public Mono<List<Event>> getFilteredEventsWithReactor(@RequestParam double budget,
+    public Mono<List<Event>> getFilteredEventsWithReactor(@RequestParam BigDecimal budget,
                                                           @RequestParam String currency,
                                                           @RequestParam(required = false) String dateFrom,
                                                           @RequestParam(required = false) String dateTo) {
