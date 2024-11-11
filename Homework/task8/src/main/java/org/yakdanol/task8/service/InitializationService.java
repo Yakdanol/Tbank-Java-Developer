@@ -8,10 +8,10 @@ import org.springframework.web.client.RestTemplate;
 import javax.annotation.PostConstruct;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
-import org.yakdanol.task5_6.repository.CategoryRepository;
-import org.yakdanol.task5_6.repository.LocationRepository;
-import org.yakdanol.task5_6.model.Category;
-import org.yakdanol.task5_6.model.Location;
+import org.yakdanol.task5_6.model.repository.CategoryRepository;
+import org.yakdanol.task5_6.model.repository.LocationRepository;
+import org.yakdanol.task5_6.model.entity.Category;
+import org.yakdanol.task5_6.model.entity.Location;
 
 @Slf4j
 @Service

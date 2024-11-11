@@ -14,6 +14,7 @@ import org.yakdanol.task8.model.Event;
 import org.yakdanol.task8.service.EventService;
 import reactor.core.publisher.Mono;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
@@ -28,8 +29,8 @@ public class EventController {
             parameters = {
                     @Parameter(name = "budget", description = "Бюджет пользователя, в котором он желает уложиться", required = true),
                     @Parameter(name = "currency", description = "Валюта пользователя (например, USD, EUR)", required = true),
-                    @Parameter(name = "dateFrom", description = "Начало периода, за который пользователя интересуют события", required = false),
-                    @Parameter(name = "dateTo", description = "Конец периода, за который пользователя интересуют события", required = false)
+                    @Parameter(name = "dateFrom", description = "Начало периода, за который пользователя интересуют события"),
+                    @Parameter(name = "dateTo", description = "Конец периода, за который пользователя интересуют события")
             })
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "События найдены и отфильтрованы по бюджету",
@@ -39,7 +40,7 @@ public class EventController {
             @ApiResponse(responseCode = "500", description = "Внутренняя ошибка сервера", content = @Content)
     })
     @GetMapping("/events")
-    public CompletableFuture<Void> getFilteredEvents(@RequestParam double budget,
+    public CompletableFuture<Void> getFilteredEvents(@RequestParam BigDecimal budget,
                                                      @RequestParam String currency,
                                                      @RequestParam(required = false) String dateFrom,
                                                      @RequestParam(required = false) String dateTo) {
@@ -51,8 +52,8 @@ public class EventController {
             parameters = {
                     @Parameter(name = "budget", description = "Бюджет пользователя, в котором он желает уложиться", required = true),
                     @Parameter(name = "currency", description = "Валюта пользователя (например, USD, EUR)", required = true),
-                    @Parameter(name = "dateFrom", description = "Начало периода, за который пользователя интересуют события", required = false),
-                    @Parameter(name = "dateTo", description = "Конец периода, за который пользователя интересуют события", required = false)
+                    @Parameter(name = "dateFrom", description = "Начало периода, за который пользователя интересуют события"),
+                    @Parameter(name = "dateTo", description = "Конец периода, за который пользователя интересуют события")
             })
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "События найдены и отфильтрованы по бюджету",
@@ -62,7 +63,7 @@ public class EventController {
             @ApiResponse(responseCode = "500", description = "Внутренняя ошибка сервера", content = @Content)
     })
     @GetMapping("/events/reactor")
-    public Mono<List<Event>> getFilteredEventsWithReactor(@RequestParam double budget,
+    public Mono<List<Event>> getFilteredEventsWithReactor(@RequestParam BigDecimal budget,
                                                           @RequestParam String currency,
                                                           @RequestParam(required = false) String dateFrom,
                                                           @RequestParam(required = false) String dateTo) {

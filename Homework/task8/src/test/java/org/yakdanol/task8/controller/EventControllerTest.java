@@ -12,6 +12,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.mockito.Mockito.when;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
@@ -26,7 +27,7 @@ public class EventControllerTest {
 
     @Test
     public void testGetFilteredEvents_Success() throws Exception {
-        when(eventService.getFilteredEventsUsingThenAcceptBoth(1000.0, "USD", null, null))
+        when(eventService.getFilteredEventsUsingThenAcceptBoth(BigDecimal.valueOf(1000.0), "USD", null, null))
                 .thenReturn(CompletableFuture.completedFuture(null));
 
         mockMvc.perform(get("/events")
@@ -51,7 +52,7 @@ public class EventControllerTest {
 
     @Test
     public void testGetFilteredEventsWithReactor_Success() throws Exception {
-        when(eventService.getFilteredEventsWithReactor(1000.0, "USD", null, null))
+        when(eventService.getFilteredEventsWithReactor(BigDecimal.valueOf(1000.0), "USD", null, null))
                 .thenReturn(Mono.just(List.of()));
 
         mockMvc.perform(get("/events/reactor")
