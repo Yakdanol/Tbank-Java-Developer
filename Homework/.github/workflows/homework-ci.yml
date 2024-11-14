@@ -16,6 +16,16 @@ jobs:
       matrix:
         module: [task2, task3, task4, task5_6, task7, task8]
 
+    services:
+      db:
+        image: postgres:15
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_DB: Homework
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+
     steps:
       # 1. Checkout кода
       - name: Checkout code
