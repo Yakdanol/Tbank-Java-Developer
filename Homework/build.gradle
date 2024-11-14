@@ -122,4 +122,9 @@ subprojects {
 	checkstyle {
 		configFile = rootProject.file('config/checkstyle/checkstyle.xml')
 	}
+
+	tasks.register('dockerBuild', Exec) {
+		dependsOn bootJar
+		commandLine 'docker', 'build', '-t', "org.yakdanol/${project.name}:latest", '.'
+	}
 }
