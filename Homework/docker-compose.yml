@@ -1,0 +1,98 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: Homework
+    ports:
+      - "5432:5432"
+    networks:
+      - homework-net
+
+  task2:
+    build:
+      context: ./task2
+      dockerfile: Dockerfile
+    image: org.yakdanol/task2:latest
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+    networks:
+      - homework-net
+
+  task3:
+    build:
+      context: ./task3
+      dockerfile: Dockerfile
+    image: org.yakdanol/task3:latest
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+    networks:
+      - homework-net
+
+  task4:
+    build:
+      context: ./task4
+      dockerfile: Dockerfile
+    image: org.yakdanol/task4:latest
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+    networks:
+      - homework-net
+
+  task5_6:
+    build:
+      context: ./task5_6
+      dockerfile: Dockerfile
+    image: org.yakdanol/task5_6:latest
+    ports:
+      - "8082:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_NAME: Homework
+    networks:
+      - homework-net
+
+  task7:
+    build:
+      context: ./task7
+      dockerfile: Dockerfile
+    image: org.yakdanol/task7:latest
+    ports:
+      - "8083:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_NAME: Homework
+    networks:
+      - homework-net
+
+  task8:
+    build:
+      context: ./task8
+      dockerfile: Dockerfile
+    image: org.yakdanol/task8:latest
+    ports:
+      - "8084:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_NAME: Homework
+    networks:
+      - homework-net
+
+networks:
+  homework-net:
+    driver: bridge

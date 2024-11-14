@@ -15,16 +15,33 @@ jobs:
     strategy:
       matrix:
         module: [task2, task3, task4, task5_6, task7, task8]
+        # Добавляем флаг для проверки, нужен ли модулю доступ к БД
+        needs_db: [false, true]
+
+      # Условие: база данных используется только для определённых модулей
+      exclude:
+        - module: task2
+          needs_db: true
+        - module: task3
+          needs_db: true
+        - module: task4
+          needs_db: true
 
     services:
       db:
-        image: postgres:15
+        if: ${{ matrix.needs_db == 'true' }}
+        image: postgres:16
         ports:
           - 5432:5432
         env:
           POSTGRES_DB: Homework
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd "pg_isready -U postgres" 
+          --health-interval 10s 
+          --health-timeout 5s 
+          --health-retries 5
 
     steps:
       # 1. Checkout кода
