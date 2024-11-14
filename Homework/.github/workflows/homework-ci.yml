@@ -26,6 +26,8 @@ jobs:
           needs_db: true
         - module: task4
           needs_db: true
+        - module: task7
+          needs_db: true
 
     services:
       db:
