@@ -2,48 +2,23 @@ name: Homework Java CI/CD
 
 on:
   push:
+    branches:
+      - master
     paths:
       - 'Homework/**'
   pull_request:
+    branches:
+      - master
     paths:
       - 'Homework/**'
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        module: [task2, task3, task4, task5_6, task7, task8]
-        # Добавляем флаг для проверки, нужен ли модулю доступ к БД
-        needs_db: [false, true]
-
-      # Условие: база данных используется только для определённых модулей
-      exclude:
-        - module: task2
-          needs_db: true
-        - module: task3
-          needs_db: true
-        - module: task4
-          needs_db: true
-        - module: task7
-          needs_db: true
-
-    services:
-      db:
-        if: ${{ matrix.needs_db == 'true' }}
-        image: postgres:16
-        ports:
-          - 5432:5432
-        env:
-          POSTGRES_DB: Homework
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-        options: >-
-          --health-cmd "pg_isready -U postgres" 
-          --health-interval 10s 
-          --health-timeout 5s 
-          --health-retries 5
+    permissions:
+      contents: read
+      packages: write
+      pull-requests: write
 
     steps:
       # 1. Checkout кода
@@ -57,24 +32,24 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      # 3. Сборка подмодуля
-      - name: Build module
-        run: ./gradlew :${{ matrix.module }}:build
+      # 3. Сборка проекта
+      - name: Build project
+        run: ./gradlew build
 
       # 4. Прогон тестов и генерация отчёта о покрытии
       - name: Run tests and generate coverage report
-        run: ./gradlew :${{ matrix.module }}:test :${{ matrix.module }}:jacocoTestReport
+        run: ./gradlew test jacocoTestReport
 
       # 5. Публикация отчёта о покрытии
       - name: Upload coverage report
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ matrix.module }}-coverage-report
+          name: coverage-report
           path: build/reports/jacoco/test/html/
 
       # 6. Статический анализ кода
       - name: Static Code Analysis - Checkstyle
-        run: ./gradlew :${{ matrix.module }}:checkstyleMain
+        run: ./gradlew checkstyleMain
 
       # 7. Логин в GitHub Docker Registry
       - name: Log in to GitHub Docker Registry
@@ -87,12 +62,12 @@ jobs:
       # 8. Сборка Docker-образа
       - name: Build Docker image
         run: |
-          docker build -t ghcr.io/${{ github.repository }}/homework-${{ matrix.module }}:${{ github.sha }} Homework/${{ matrix.module }}
+          docker build -t ghcr.io/${{ github.repository }}/homework:${{ github.sha }} .
 
       # 9. Публикация Docker-образа в GitHub Packages
       - name: Push Docker image to GitHub Packages
-        run: docker push ghcr.io/${{ github.repository }}/homework-${{ matrix.module }}:${{ github.sha }}
+        run: docker push ghcr.io/${{ github.repository }}/homework:${{ github.sha }}
 
       # 10. Завершение workflow
       - name: Complete Job
-        run: echo "Workflow completed for module ${{ matrix.module }}"
+        run: echo "Workflow completed for the entire project"
