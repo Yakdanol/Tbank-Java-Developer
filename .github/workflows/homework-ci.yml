@@ -39,6 +39,7 @@ jobs:
       # 4. Сборка проекта Homework
       - name: Build project
         run: |
+          chmod +x Homework/gradlew
           cd Homework
           ./gradlew build
 
