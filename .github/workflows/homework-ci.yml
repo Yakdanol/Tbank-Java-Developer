@@ -36,24 +36,30 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@af1da67850ed9a4cedd57bfd976089dd991e2582 # v4.0.0
 
-      # 4. Сборка проекта
+      # 4. Сборка проекта Homework
       - name: Build project
-        run: ./gradlew build
+        run: |
+          cd Homework
+          ./gradlew build
 
       # 5. Прогон тестов и генерация отчёта о покрытии
       - name: Run tests and generate coverage report
-        run: ./gradlew test jacocoTestReport
+        run: |
+          cd Homework
+          ./gradlew test jacocoTestReport
 
       # 6. Публикация отчёта о покрытии
       - name: Upload coverage report
         uses: actions/upload-artifact@v3
         with:
           name: coverage-report
-          path: build/reports/jacoco/test/html/
+          path: Homework/build/reports/jacoco/test/html/
 
       # 7. Статический анализ кода
       - name: Static Code Analysis - Checkstyle
-        run: ./gradlew checkstyleMain
+        run: |
+          cd Homework
+          ./gradlew checkstyleMain
 
       # 8. Логин в GitHub Docker Registry
       - name: Log in to GitHub Docker Registry
@@ -66,15 +72,17 @@ jobs:
       # 9. Сборка Docker-образа
       - name: Build Docker image
         run: |
+          cd Homework
           docker build -t ghcr.io/${{ github.repository }}/homework:${{ github.sha }} .
 
       # 10. Публикация Docker-образа в GitHub Packages
       - name: Push Docker image to GitHub Packages
-        run: docker push ghcr.io/${{ github.repository }}/homework:${{ github.sha }}
+        run: |
+          docker push ghcr.io/${{ github.repository }}/homework:${{ github.sha }}
 
       # 11. Завершение workflow
       - name: Complete Job
-        run: echo "Workflow completed for the entire project"
+        run: echo "Workflow completed for the Homework module"
 
   dependency-submission:
     runs-on: ubuntu-latest
