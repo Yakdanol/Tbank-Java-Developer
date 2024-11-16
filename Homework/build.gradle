@@ -35,6 +35,8 @@ dependencies {
 	implementation project(':task7')
 	implementation project(':task8')
 
+	implementation 'com.puppycrawl.tools:checkstyle:10.17.0'
+
 	implementation 'org.springframework.boot:spring-boot-starter'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
@@ -69,7 +71,7 @@ jacocoTestReport {
 }
 
 checkstyle {
-	toolVersion = '10.9'
+	toolVersion = '10.17'
 	configFile = rootProject.file('config/checkstyle/checkstyle.xml')
 }
 
