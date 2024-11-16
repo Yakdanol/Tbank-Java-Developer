@@ -84,3 +84,24 @@ jobs:
       # 11. Завершение workflow
       - name: Complete Job
         run: echo "Workflow completed for the Homework module"
+
+  dependency-submission:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      # 1. Checkout кода
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2. Установка JDK 17
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      # 3. Генерация и отправка графа зависимостей
+      - name: Generate and submit dependency graph
+        uses: gradle/actions/dependency-submission@af1da67850ed9a4cedd57bfd976089dd991e2582 # v4.0.0
