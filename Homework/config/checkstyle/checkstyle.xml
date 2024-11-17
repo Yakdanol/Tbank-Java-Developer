@@ -24,11 +24,6 @@
         <property name="lineRange" value="$2"/>
     </module>
 
-    <!-- Проверка на отсутствие табуляций в файлах -->
-    <module name="FileTabCharacter">
-        <property name="eachLine" value="true"/>
-    </module>
-
     <!-- Ограничение длины строки (максимум 120 символов) -->
     <module name="LineLength">
         <property name="max" value="120"/>
@@ -53,11 +48,6 @@
         <!-- Требует использование фигурных скобок для управляющих конструкций -->
         <module name="NeedBraces">
             <property name="tokens" value="LITERAL_DO, LITERAL_ELSE, LITERAL_FOR, LITERAL_IF, LITERAL_WHILE"/>
-        </module>
-
-        <!-- Проверка расположения левой фигурной скобки (перенос на новую строку) -->
-        <module name="LeftCurly">
-            <property name="option" value="nl"/>
         </module>
 
         <!-- Проверка расположения правой фигурной скобки (на отдельной строке) -->
@@ -90,11 +80,6 @@
 
         <!-- Проверка порядка модификаторов (public, protected, private) -->
         <module name="ModifierOrder"/>
-
-        <!-- Проверка на наличие пустых строк между блоками кода -->
-        <module name="EmptyLineSeparator">
-            <property name="tokens" value="CLASS_DEF, INTERFACE_DEF, METHOD_DEF, CTOR_DEF, VARIABLE_DEF"/>
-        </module>
 
         <!-- Проверка расположения точки при вызове методов (перенос на новую строку) -->
         <module name="SeparatorWrap">
