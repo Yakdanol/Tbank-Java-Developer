@@ -85,12 +85,10 @@ jobs:
           cd Homework
           docker build -t ghcr.io/${{ github.repository | toLowerCase }}/homework:${{ github.sha }} .
 
-
       # 10. Публикация Docker-образа в GitHub Packages
       - name: Push Docker image to GitHub Packages
         run: |
           docker push ghcr.io/${{ github.repository | toLowerCase }}/homework:${{ github.sha }}
-
 
       # 11. Завершение workflow
       - name: Complete Job
