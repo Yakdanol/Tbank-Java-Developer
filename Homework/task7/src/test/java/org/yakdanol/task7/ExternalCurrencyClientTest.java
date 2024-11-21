@@ -11,6 +11,8 @@ import org.yakdanol.task7.model.CurrencyRate;
 import org.yakdanol.task7.service.ExternalCurrencyClient;
 import reactor.core.publisher.Mono;
 
+import java.math.BigDecimal;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
@@ -24,9 +26,6 @@ public class ExternalCurrencyClientTest {
 
     @Mock
     private WebClient.RequestHeadersUriSpec requestHeadersUriSpec;
-
-    @Mock
-    private WebClient.RequestHeadersSpec requestHeadersSpec;
 
     @Mock
     private WebClient.ResponseSpec responseSpec;
@@ -59,7 +58,8 @@ public class ExternalCurrencyClientTest {
 
         assertNotNull(rate);
         assertEquals("USD", rate.getCurrency());
-        assertEquals(96.0686, rate.getRate(), 0.0001);
+
+        assertEquals(new BigDecimal("100.2192"), rate.getRate());
     }
 
     /// Тест на случай, когда валюта не найдена
