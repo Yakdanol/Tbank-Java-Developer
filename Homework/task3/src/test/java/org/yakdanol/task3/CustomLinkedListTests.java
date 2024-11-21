@@ -2,6 +2,7 @@ package org.yakdanol.task3;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.yakdanol.task3.model.CustomIterator;
 import org.yakdanol.task3.model.CustomLinkedList;
 
 import java.util.ArrayList;
@@ -107,5 +108,35 @@ public class CustomLinkedListTests {
 		assertEquals("Element 6", customListFromStream.get(0));
 		assertEquals("Element 7", customListFromStream.get(1));
 		assertEquals("Element 8", customListFromStream.get(2));
+	}
+
+	@Test
+	public void testIterator() {
+		customList.add("Element 1");
+		customList.add("Element 2");
+		customList.add("Element 3");
+
+		CustomIterator<String> iterator = customList.iterator();
+		List<String> elements = new ArrayList<>();
+		while (iterator.hasNext()) {
+			elements.add(iterator.next());
+		}
+
+		assertEquals(3, elements.size());
+		assertEquals("Element 1", elements.get(0));
+		assertEquals("Element 2", elements.get(1));
+		assertEquals("Element 3", elements.get(2));
+	}
+
+	@Test
+	public void testForEachRemaining() {
+		customList.add("Element 1");
+		customList.add("Element 2");
+		customList.add("Element 3");
+
+		CustomIterator<String> iterator = customList.iterator();
+
+		System.out.println("Testing forEachRemaining:");
+		iterator.forEachRemaining(System.out::println);
 	}
 }
