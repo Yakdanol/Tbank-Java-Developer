@@ -8,6 +8,7 @@ import org.yakdanol.task7.service.CurrencyService;
 import org.yakdanol.task8.model.Event;
 import org.yakdanol.task8.util.DataFetcher;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -33,16 +34,17 @@ public class EventServiceTest {
     @Test
     public void testGetFilteredEventsUsingThenAcceptBoth_Success() {
         // Mocking конвертацию бюджета
-        when(currencyService.convertToRubleAsync(any(Double.class), any(String.class)))
-                .thenReturn(CompletableFuture.completedFuture(1000.0));
+        when(currencyService.convertToRubleAsync(any(BigDecimal.class), any(String.class)))
+                .thenReturn(CompletableFuture.completedFuture(new BigDecimal("1000.00")));
 
         // Mocking получение событий
-        Event event1 = new Event("Concert", "Live concert by a popular band", 500.0, "2024-10-10");
-        Event event2 = new Event("Theater", "Drama performance", 1500.0, "2024-11-10");
+        Event event1 = new Event("Concert", "Live concert by a popular band", new BigDecimal("500.00"), "2024-10-10");
+        Event event2 = new Event("Theater", "Drama performance", new BigDecimal("1500.00"), "2024-11-10");
         when(dataFetcher.fetchEvents(any(), any()))
                 .thenReturn(CompletableFuture.completedFuture(Arrays.asList(event1, event2)));
 
-        CompletableFuture<Void> future = eventService.getFilteredEventsUsingThenAcceptBoth(1000.0, "USD", null, null);
+        CompletableFuture<Void> future = eventService.getFilteredEventsUsingThenAcceptBoth(
+                new BigDecimal("1000.00"), "USD", null, null);
         future.join();
         assertThat(future).isCompleted();
     }
@@ -50,15 +52,16 @@ public class EventServiceTest {
     @Test
     public void testGetFilteredEvents_NoEventsWithinBudget() {
         // Mocking конвертацию бюджета
-        when(currencyService.convertToRubleAsync(any(Double.class), any(String.class)))
-                .thenReturn(CompletableFuture.completedFuture(500.0));
+        when(currencyService.convertToRubleAsync(any(BigDecimal.class), any(String.class)))
+                .thenReturn(CompletableFuture.completedFuture(new BigDecimal("500.00")));
 
         // Mocking получение событий
-        Event event1 = new Event("Concert", "Live concert by a popular band", 1000.0, "2024-10-10");
+        Event event1 = new Event("Concert", "Live concert by a popular band", new BigDecimal("1000.00"), "2024-10-10");
         when(dataFetcher.fetchEvents(any(), any()))
                 .thenReturn(CompletableFuture.completedFuture(List.of(event1)));
 
-        CompletableFuture<Void> future = eventService.getFilteredEventsUsingThenAcceptBoth(500.0, "USD", null, null);
+        CompletableFuture<Void> future = eventService.getFilteredEventsUsingThenAcceptBoth(
+                new BigDecimal("500.00"), "USD", null, null);
         future.join();
         assertThat(future).isCompleted();
     }
@@ -66,7 +69,8 @@ public class EventServiceTest {
     @Test
     public void testGetFilteredEvents_InvalidInput() {
         // Проверка на некорректные данные
-        CompletableFuture<Void> future = eventService.getFilteredEventsUsingThenAcceptBoth(-100.0, "USD", null, null);
+        CompletableFuture<Void> future = eventService.getFilteredEventsUsingThenAcceptBoth(
+                new BigDecimal("-100.00"), "USD", null, null);
         assertThat(future).isCompletedExceptionally();
     }
 }

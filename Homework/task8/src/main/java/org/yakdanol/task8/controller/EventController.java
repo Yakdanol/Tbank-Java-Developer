@@ -18,8 +18,8 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
-@RestController
 @RequiredArgsConstructor
+@RestController("eventControllerTask8")
 public class EventController {
 
     private final EventService eventService;
