@@ -50,11 +50,6 @@
             <property name="tokens" value="LITERAL_DO, LITERAL_ELSE, LITERAL_FOR, LITERAL_IF, LITERAL_WHILE"/>
         </module>
 
-        <!-- Проверка расположения правой фигурной скобки (на отдельной строке) -->
-        <module name="RightCurly">
-            <property name="option" value="alone"/>
-        </module>
-
         <!-- Проверка на наличие пробелов после ключевых слов и операторов -->
         <module name="WhitespaceAfter">
             <property name="tokens" value="COMMA, SEMI, TYPECAST, LITERAL_IF, LITERAL_ELSE, LITERAL_RETURN"/>
