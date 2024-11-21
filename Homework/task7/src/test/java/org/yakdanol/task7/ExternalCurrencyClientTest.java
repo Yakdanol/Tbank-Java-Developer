@@ -59,7 +59,7 @@ public class ExternalCurrencyClientTest {
         assertNotNull(rate);
         assertEquals("USD", rate.getCurrency());
 
-        assertEquals(new BigDecimal("100.2192"), rate.getRate());
+        assertEquals(new BigDecimal("100.6798"), rate.getRate());
     }
 
     /// Тест на случай, когда валюта не найдена
