@@ -30,6 +30,7 @@ dependencies {
 	implementation project(':task5_6')
 	implementation project(':task7')
 	implementation project(':task8')
+	implementation project(':task15')
 
 	implementation 'org.springframework.boot:spring-boot-starter'
 	compileOnly 'org.projectlombok:lombok'

@@ -7,6 +7,6 @@ plugins {
     id 'org.gradle.toolchains.foojay-resolver-convention' version '0.8.0'
 }
 rootProject.name = 'Homework'
-include 'task2', 'task3', 'task5_6', 'task7', 'task8'
+include 'task2', 'task3', 'task5_6', 'task7', 'task8', 'task15'
 include 'task4'
 
