@@ -14,7 +14,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 @Slf4j
-@Service
+@Service("EventServiceTask8")
 public class EventService {
 
     private final CurrencyService currencyService;

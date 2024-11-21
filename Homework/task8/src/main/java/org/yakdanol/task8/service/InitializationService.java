@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.PostConstruct;
+import java.util.Arrays;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import org.yakdanol.task5_6.model.repository.CategoryRepository;
@@ -48,9 +49,7 @@ public class InitializationService {
         try {
             Category[] categories = restTemplate.getForObject(CATEGORIES_API_URL, Category[].class);
             if (categories != null) {
-                for (Category category : categories) {
-                    categoryRepository.save(category.getId(), category);
-                }
+                categoryRepository.saveAll(Arrays.asList(categories));
                 log.info("Categories initialized successfully with {} entries.", categories.length);
             } else {
                 log.warn("No categories retrieved from KudaGo API.");
@@ -64,9 +63,7 @@ public class InitializationService {
         try {
             Location[] locations = restTemplate.getForObject(LOCATIONS_API_URL, Location[].class);
             if (locations != null) {
-                for (Location location : locations) {
-                    locationRepository.save(location.getSlug(), location);
-                }
+                locationRepository.saveAll(Arrays.asList(locations));
                 log.info("Locations initialized successfully with {} entries.", locations.length);
             } else {
                 log.warn("No locations retrieved from KudaGo API.");
