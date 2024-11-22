@@ -19,6 +19,49 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
+	// Jackson
+	implementation 'com.fasterxml.jackson.core:jackson-databind:2.18.1'
+	implementation 'com.fasterxml.jackson.core:jackson-core:2.18.1'
+	implementation 'com.fasterxml.jackson.core:jackson-annotations:2.18.1'
+
+	// JMH Core and Annotation Processor
+	implementation 'org.openjdk.jmh:jmh-core:1.37'
+	annotationProcessor 'org.openjdk.jmh:jmh-generator-annprocess:1.37'
+
+	// Kafka
+	implementation("org.springframework.kafka:spring-kafka:3.2.4")
+
+	// RabbitMQ
+	implementation("org.springframework.amqp:spring-rabbit:3.1.7")
+
+	// Lombok
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+
+	// Jakarta и Javax
+	implementation 'javax.annotation:javax.annotation-api:1.3.2'
+	implementation 'javax.servlet:javax.servlet-api:4.0.1'
+	compileOnly 'jakarta.servlet:jakarta.servlet-api:6.1.0'
+	implementation 'jakarta.validation:jakarta.validation-api:3.1.0'
+
+	// Jmh
+	testImplementation("org.openjdk.jmh:jmh-core:1.37")
+	testAnnotationProcessor("org.openjdk.jmh:jmh-generator-annprocess:1.37")
+
+	// Mockito
+	testImplementation 'org.mockito:mockito-core:5.12.0'
+	testImplementation 'org.mockito:mockito-junit-jupiter:5.12.0'
+
+	// AssertJ
+	testImplementation 'org.assertj:assertj-core:3.26.3'
+
+	// Testcontainers
+	testImplementation 'org.testcontainers:testcontainers:1.20.2'
+	testImplementation 'org.testcontainers:junit-jupiter:1.20.2'
+	testImplementation 'org.testcontainers:postgresql:1.20.2'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
