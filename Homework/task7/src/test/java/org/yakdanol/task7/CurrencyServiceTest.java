@@ -13,6 +13,8 @@ import org.yakdanol.task7.model.CurrencyRate;
 import org.yakdanol.task7.service.CurrencyService;
 import org.yakdanol.task7.service.ExternalCurrencyClient;
 
+import java.math.BigDecimal;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -29,54 +31,72 @@ public class CurrencyServiceTest {
         MockitoAnnotations.openMocks(this);
     }
 
-    /// Тест на успешную конвертацию USD в RUB
+    // Тест на успешную конвертацию USD в RUB
     @Test
     public void testConvertUsdToRub() {
         // Устанавливаем тестовые значения курсов
-        when(externalCurrencyClient.fetchRate("USD")).thenReturn(new CurrencyRate("USD", 96.0686));
-        when(externalCurrencyClient.fetchRate("RUB")).thenReturn(new CurrencyRate("RUB", 1.0));
+        when(externalCurrencyClient.fetchRate("USD"))
+                .thenReturn(new CurrencyRate("USD", new BigDecimal("96.0686")));
+        when(externalCurrencyClient.fetchRate("RUB"))
+                .thenReturn(new CurrencyRate("RUB", BigDecimal.ONE));
 
         // Создаем запрос
-        ConversionRequest request = new ConversionRequest("USD", "RUB", 100);
+        ConversionRequest request = new ConversionRequest("USD", "RUB", new BigDecimal("100"));
         ConversionResponse response = currencyService.convertCurrency(request);
 
         // Ожидаем результат конвертации
         assertEquals("USD", response.getFromCurrency());
         assertEquals("RUB", response.getToCurrency());
-        assertEquals(9606.86, response.getConvertedAmount(), 0.01);
+        BigDecimal expected = new BigDecimal("9606.86");
+        BigDecimal actual = response.getConvertedAmount();
+        BigDecimal tolerance = new BigDecimal("1");
+
+        // Проверяем, что разница между ожидаемым и фактическим значением меньше или равна допустимой погрешности
+        assertTrue(expected.subtract(actual).abs().compareTo(tolerance) <= 0,
+                "Actual value is out of tolerance range");
     }
 
-    /// Тест на успешную конвертацию между двумя иностранными валютами (USD -> EUR)
+    // Тест на успешную конвертацию между двумя иностранными валютами (USD -> EUR)
     @Test
     public void testConvertUsdToEur() {
         // Устанавливаем тестовые значения курсов
-        when(externalCurrencyClient.fetchRate("USD")).thenReturn(new CurrencyRate("USD", 96.0686));
-        when(externalCurrencyClient.fetchRate("EUR")).thenReturn(new CurrencyRate("EUR", 105.1190));
+        when(externalCurrencyClient.fetchRate("USD"))
+                .thenReturn(new CurrencyRate("USD", new BigDecimal("96.0686")));
+        when(externalCurrencyClient.fetchRate("EUR"))
+                .thenReturn(new CurrencyRate("EUR", new BigDecimal("105.1190")));
 
         // Делаем запрос
-        ConversionRequest request = new ConversionRequest("USD", "EUR", 100);
+        ConversionRequest request = new ConversionRequest("USD", "EUR", new BigDecimal("100"));
         ConversionResponse response = currencyService.convertCurrency(request);
 
         // Ожидаем результат конвертации
         assertEquals("USD", response.getFromCurrency());
         assertEquals("EUR", response.getToCurrency());
-        assertEquals(91.38, response.getConvertedAmount(), 0.1);
+        BigDecimal expected = new BigDecimal("91.38");
+        BigDecimal actual = response.getConvertedAmount();
+        BigDecimal tolerance = new BigDecimal("1");
+
+        // Проверяем, что разница между ожидаемым и фактическим значением меньше или равна допустимой погрешности
+        assertTrue(expected.subtract(actual).abs().compareTo(tolerance) <= 0,
+                "Actual value is out of tolerance range");
+
     }
 
-    /// Тест на ошибку, когда передан отрицательный amount
+    // Тест на ошибку, когда передан отрицательный amount
     @Test
     public void testConvertWithNegativeAmount() {
-        ConversionRequest request = new ConversionRequest("USD", "RUB", -100);
+        ConversionRequest request = new ConversionRequest("USD", "RUB", new BigDecimal("-100"));
 
         // Ожидаем исключение BadRequestException
         assertThrows(BadRequestException.class, () -> currencyService.convertCurrency(request));
     }
 
-    /// Тест на случай, если валюта не найдена
+    // Тест на случай, если валюта не найдена
     @Test
     public void testCurrencyNotFound() {
-        when(externalCurrencyClient.fetchRate("XYZ")).thenThrow(new CurrencyNotFoundException("XYZ"));
-        ConversionRequest request = new ConversionRequest("XYZ", "USD", 100);
+        when(externalCurrencyClient.fetchRate("XYZ"))
+                .thenThrow(new CurrencyNotFoundException("XYZ"));
+        ConversionRequest request = new ConversionRequest("XYZ", "USD", new BigDecimal("100"));
 
         assertThrows(CurrencyNotFoundException.class, () -> currencyService.convertCurrency(request));
     }
