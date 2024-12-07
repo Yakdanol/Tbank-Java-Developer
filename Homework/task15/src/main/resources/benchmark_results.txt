@@ -1,0 +1,971 @@
+# JMH version: 1.37
+# VM version: JDK 17.0.12, Java HotSpot(TM) 64-Bit Server VM, 17.0.12+8-LTS-jvmci-23.0-b41
+# VM invoker: C:\Users\Yakdanol\.jdks\graalvm-jdk-17.0.12\bin\java.exe
+# VM options: -XX:ThreadPriorityPolicy=1 -XX:+UnlockExperimentalVMOptions -XX:+EnableJVMCIProduct -XX:-UnlockExperimentalVMOptions -XX:TieredStopAtLevel=1 -Dspring.output.ansi.enabled=always -Dcom.sun.management.jmxremote -Dspring.jmx.enabled=true -Dspring.liveBeansView.mbeanDomain -Dspring.application.admin.enabled=true -Dmanagement.endpoints.jmx.exposure.include=* -javaagent:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\lib\idea_rt.jar=58526:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\bin -Dfile.encoding=UTF-8
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 3 iterations, 10 s each
+# Measurement: 10 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: org.yakdanol.task15.utils.Benchmark.loadBalancingAndMultipleConsumersKafkaConfigThroughput
+
+# Run progress: 0,00% complete, ETA 00:58:30
+# Fork: 1 of 1
+# Warmup Iteration   1: 27285417,830 ops/s
+# Warmup Iteration   2: 27264813,310 ops/s
+# Warmup Iteration   3: 25410004,203 ops/s
+Iteration   1: 25780519,679 ops/s
+Iteration   2: 27378914,480 ops/s
+Iteration   3: 27465315,092 ops/s
+Iteration   4: 26833411,716 ops/s
+Iteration   5: 27091386,360 ops/s
+Iteration   6: 27180185,570 ops/s
+Iteration   7: 27083700,635 ops/s
+Iteration   8: 20363599,573 ops/s
+Iteration   9: 25678770,451 ops/s
+Iteration  10: 27405811,905 ops/s
+
+
+Result "org.yakdanol.task15.utils.Benchmark.loadBalancingAndMultipleConsumersKafkaConfigThroughput":
+  26226161,546 ±(99.9%) 3261576,279 ops/s [Average]
+  (min, avg, max) = (20363599,573, 26226161,546, 27465315,092), stdev = 2157330,765
+  CI (99.9%): [22964585,267, 29487737,825] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.12, Java HotSpot(TM) 64-Bit Server VM, 17.0.12+8-LTS-jvmci-23.0-b41
+# VM invoker: C:\Users\Yakdanol\.jdks\graalvm-jdk-17.0.12\bin\java.exe
+# VM options: -XX:ThreadPriorityPolicy=1 -XX:+UnlockExperimentalVMOptions -XX:+EnableJVMCIProduct -XX:-UnlockExperimentalVMOptions -XX:TieredStopAtLevel=1 -Dspring.output.ansi.enabled=always -Dcom.sun.management.jmxremote -Dspring.jmx.enabled=true -Dspring.liveBeansView.mbeanDomain -Dspring.application.admin.enabled=true -Dmanagement.endpoints.jmx.exposure.include=* -javaagent:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\lib\idea_rt.jar=58526:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\bin -Dfile.encoding=UTF-8
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 3 iterations, 10 s each
+# Measurement: 10 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: org.yakdanol.task15.utils.Benchmark.loadBalancingAndMultipleConsumersRabbitConfigThroughput
+
+# Run progress: 3,70% complete, ETA 00:57:01
+# Fork: 1 of 1
+# Warmup Iteration   1: 461,723 ops/s
+# Warmup Iteration   2: 457,181 ops/s
+# Warmup Iteration   3: 476,395 ops/s
+Iteration   1: 475,112 ops/s
+Iteration   2: 488,000 ops/s
+Iteration   3: 489,049 ops/s
+Iteration   4: 471,467 ops/s
+Iteration   5: 467,260 ops/s
+Iteration   6: 457,229 ops/s
+Iteration   7: 458,873 ops/s
+Iteration   8: 466,897 ops/s
+Iteration   9: 461,943 ops/s
+Iteration  10: 452,111 ops/s
+
+
+Result "org.yakdanol.task15.utils.Benchmark.loadBalancingAndMultipleConsumersRabbitConfigThroughput":
+  468,794 ±(99.9%) 18,786 ops/s [Average]
+  (min, avg, max) = (452,111, 468,794, 489,049), stdev = 12,426
+  CI (99.9%): [450,008, 487,580] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.12, Java HotSpot(TM) 64-Bit Server VM, 17.0.12+8-LTS-jvmci-23.0-b41
+# VM invoker: C:\Users\Yakdanol\.jdks\graalvm-jdk-17.0.12\bin\java.exe
+# VM options: -XX:ThreadPriorityPolicy=1 -XX:+UnlockExperimentalVMOptions -XX:+EnableJVMCIProduct -XX:-UnlockExperimentalVMOptions -XX:TieredStopAtLevel=1 -Dspring.output.ansi.enabled=always -Dcom.sun.management.jmxremote -Dspring.jmx.enabled=true -Dspring.liveBeansView.mbeanDomain -Dspring.application.admin.enabled=true -Dmanagement.endpoints.jmx.exposure.include=* -javaagent:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\lib\idea_rt.jar=58526:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\bin -Dfile.encoding=UTF-8
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 3 iterations, 10 s each
+# Measurement: 10 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: org.yakdanol.task15.utils.Benchmark.loadBalancingKafkaConfigThroughput
+
+# Run progress: 7,41% complete, ETA 00:54:50
+# Fork: 1 of 1
+# Warmup Iteration   1: 22438121,274 ops/s
+# Warmup Iteration   2: 21176563,977 ops/s
+# Warmup Iteration   3: 25225993,324 ops/s
+Iteration   1: 26468745,708 ops/s
+Iteration   2: 26476269,542 ops/s
+Iteration   3: 26770224,983 ops/s
+Iteration   4: 26801539,763 ops/s
+Iteration   5: 26672275,870 ops/s
+Iteration   6: 26772744,091 ops/s
+Iteration   7: 26737094,485 ops/s
+Iteration   8: 26765593,765 ops/s
+Iteration   9: 21131001,342 ops/s
+Iteration  10: 22143810,672 ops/s
+
+
+Result "org.yakdanol.task15.utils.Benchmark.loadBalancingKafkaConfigThroughput":
+  25673930,022 ±(99.9%) 3241590,588 ops/s [Average]
+  (min, avg, max) = (21131001,342, 25673930,022, 26801539,763), stdev = 2144111,467
+  CI (99.9%): [22432339,434, 28915520,610] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.12, Java HotSpot(TM) 64-Bit Server VM, 17.0.12+8-LTS-jvmci-23.0-b41
+# VM invoker: C:\Users\Yakdanol\.jdks\graalvm-jdk-17.0.12\bin\java.exe
+# VM options: -XX:ThreadPriorityPolicy=1 -XX:+UnlockExperimentalVMOptions -XX:+EnableJVMCIProduct -XX:-UnlockExperimentalVMOptions -XX:TieredStopAtLevel=1 -Dspring.output.ansi.enabled=always -Dcom.sun.management.jmxremote -Dspring.jmx.enabled=true -Dspring.liveBeansView.mbeanDomain -Dspring.application.admin.enabled=true -Dmanagement.endpoints.jmx.exposure.include=* -javaagent:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\lib\idea_rt.jar=58526:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\bin -Dfile.encoding=UTF-8
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 3 iterations, 10 s each
+# Measurement: 10 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: org.yakdanol.task15.utils.Benchmark.loadBalancingRabbitConfigThroughput
+
+# Run progress: 11,11% complete, ETA 00:52:38
+# Fork: 1 of 1
+# Warmup Iteration   1: 1219,546 ops/s
+# Warmup Iteration   2: 1238,973 ops/s
+# Warmup Iteration   3: 1307,503 ops/s
+Iteration   1: 1295,592 ops/s
+Iteration   2: 1284,153 ops/s
+Iteration   3: 1280,171 ops/s
+Iteration   4: 1309,352 ops/s
+Iteration   5: 1357,896 ops/s
+Iteration   6: 1259,838 ops/s
+Iteration   7: 1364,524 ops/s
+Iteration   8: 1232,648 ops/s
+Iteration   9: 1197,454 ops/s
+Iteration  10: 1275,220 ops/s
+
+
+Result "org.yakdanol.task15.utils.Benchmark.loadBalancingRabbitConfigThroughput":
+  1285,685 ±(99.9%) 77,248 ops/s [Average]
+  (min, avg, max) = (1197,454, 1285,685, 1364,524), stdev = 51,095
+  CI (99.9%): [1208,436, 1362,933] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.12, Java HotSpot(TM) 64-Bit Server VM, 17.0.12+8-LTS-jvmci-23.0-b41
+# VM invoker: C:\Users\Yakdanol\.jdks\graalvm-jdk-17.0.12\bin\java.exe
+# VM options: -XX:ThreadPriorityPolicy=1 -XX:+UnlockExperimentalVMOptions -XX:+EnableJVMCIProduct -XX:-UnlockExperimentalVMOptions -XX:TieredStopAtLevel=1 -Dspring.output.ansi.enabled=always -Dcom.sun.management.jmxremote -Dspring.jmx.enabled=true -Dspring.liveBeansView.mbeanDomain -Dspring.application.admin.enabled=true -Dmanagement.endpoints.jmx.exposure.include=* -javaagent:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\lib\idea_rt.jar=58526:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\bin -Dfile.encoding=UTF-8
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 3 iterations, 10 s each
+# Measurement: 10 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: org.yakdanol.task15.utils.Benchmark.multipleConsumersRabbitConfigThroughput
+
+# Run progress: 14,81% complete, ETA 00:50:27
+# Fork: 1 of 1
+# Warmup Iteration   1: 578,253 ops/s
+# Warmup Iteration   2: 582,032 ops/s
+# Warmup Iteration   3: 584,476 ops/s
+Iteration   1: 576,453 ops/s
+Iteration   2: 580,065 ops/s
+Iteration   3: 597,714 ops/s
+Iteration   4: 593,544 ops/s
+Iteration   5: 587,316 ops/s
+Iteration   6: 589,242 ops/s
+Iteration   7: 597,401 ops/s
+Iteration   8: 586,881 ops/s
+Iteration   9: 581,052 ops/s
+Iteration  10: 572,168 ops/s
+
+
+Result "org.yakdanol.task15.utils.Benchmark.multipleConsumersRabbitConfigThroughput":
+  586,184 ±(99.9%) 13,132 ops/s [Average]
+  (min, avg, max) = (572,168, 586,184, 597,714), stdev = 8,686
+  CI (99.9%): [573,052, 599,315] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.12, Java HotSpot(TM) 64-Bit Server VM, 17.0.12+8-LTS-jvmci-23.0-b41
+# VM invoker: C:\Users\Yakdanol\.jdks\graalvm-jdk-17.0.12\bin\java.exe
+# VM options: -XX:ThreadPriorityPolicy=1 -XX:+UnlockExperimentalVMOptions -XX:+EnableJVMCIProduct -XX:-UnlockExperimentalVMOptions -XX:TieredStopAtLevel=1 -Dspring.output.ansi.enabled=always -Dcom.sun.management.jmxremote -Dspring.jmx.enabled=true -Dspring.liveBeansView.mbeanDomain -Dspring.application.admin.enabled=true -Dmanagement.endpoints.jmx.exposure.include=* -javaagent:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\lib\idea_rt.jar=58526:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\bin -Dfile.encoding=UTF-8
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 3 iterations, 10 s each
+# Measurement: 10 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: org.yakdanol.task15.utils.Benchmark.multipleConsumersStressTestRabbitConfigThroughput
+
+# Run progress: 18,52% complete, ETA 00:48:15
+# Fork: 1 of 1
+# Warmup Iteration   1: 26470593,811 ops/s
+# Warmup Iteration   2: 27021781,355 ops/s
+# Warmup Iteration   3: 27152018,333 ops/s
+Iteration   1: 27170294,604 ops/s
+Iteration   2: 27397715,739 ops/s
+Iteration   3: 27335294,460 ops/s
+Iteration   4: 27164606,348 ops/s
+Iteration   5: 27118686,061 ops/s
+Iteration   6: 16756810,609 ops/s
+Iteration   7: 16154152,660 ops/s
+Iteration   8: 15582035,104 ops/s
+Iteration   9: 15525895,761 ops/s
+Iteration  10: 16458262,501 ops/s
+
+
+Result "org.yakdanol.task15.utils.Benchmark.multipleConsumersStressTestRabbitConfigThroughput":
+  21666375,384 ±(99.9%) 8895493,116 ops/s [Average]
+  (min, avg, max) = (15525895,761, 21666375,384, 27397715,739), stdev = 5883817,922
+  CI (99.9%): [12770882,268, 30561868,501] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.12, Java HotSpot(TM) 64-Bit Server VM, 17.0.12+8-LTS-jvmci-23.0-b41
+# VM invoker: C:\Users\Yakdanol\.jdks\graalvm-jdk-17.0.12\bin\java.exe
+# VM options: -XX:ThreadPriorityPolicy=1 -XX:+UnlockExperimentalVMOptions -XX:+EnableJVMCIProduct -XX:-UnlockExperimentalVMOptions -XX:TieredStopAtLevel=1 -Dspring.output.ansi.enabled=always -Dcom.sun.management.jmxremote -Dspring.jmx.enabled=true -Dspring.liveBeansView.mbeanDomain -Dspring.application.admin.enabled=true -Dmanagement.endpoints.jmx.exposure.include=* -javaagent:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\lib\idea_rt.jar=58526:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\bin -Dfile.encoding=UTF-8
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 3 iterations, 10 s each
+# Measurement: 10 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: org.yakdanol.task15.utils.Benchmark.simpleRabbitThroughput
+
+# Run progress: 22,22% complete, ETA 00:46:04
+# Fork: 1 of 1
+# Warmup Iteration   1: 1582,451 ops/s
+# Warmup Iteration   2: 1638,516 ops/s
+# Warmup Iteration   3: 1657,676 ops/s
+Iteration   1: 1571,183 ops/s
+Iteration   2: 1567,722 ops/s
+Iteration   3: 1593,728 ops/s
+Iteration   4: 1380,840 ops/s
+Iteration   5: 1515,579 ops/s
+Iteration   6: 1566,192 ops/s
+Iteration   7: 1557,452 ops/s
+Iteration   8: 1523,482 ops/s
+Iteration   9: 1558,039 ops/s
+Iteration  10: 1584,266 ops/s
+
+
+Result "org.yakdanol.task15.utils.Benchmark.simpleRabbitThroughput":
+  1541,848 ±(99.9%) 93,020 ops/s [Average]
+  (min, avg, max) = (1380,840, 1541,848, 1593,728), stdev = 61,527
+  CI (99.9%): [1448,828, 1634,869] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.12, Java HotSpot(TM) 64-Bit Server VM, 17.0.12+8-LTS-jvmci-23.0-b41
+# VM invoker: C:\Users\Yakdanol\.jdks\graalvm-jdk-17.0.12\bin\java.exe
+# VM options: -XX:ThreadPriorityPolicy=1 -XX:+UnlockExperimentalVMOptions -XX:+EnableJVMCIProduct -XX:-UnlockExperimentalVMOptions -XX:TieredStopAtLevel=1 -Dspring.output.ansi.enabled=always -Dcom.sun.management.jmxremote -Dspring.jmx.enabled=true -Dspring.liveBeansView.mbeanDomain -Dspring.application.admin.enabled=true -Dmanagement.endpoints.jmx.exposure.include=* -javaagent:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\lib\idea_rt.jar=58526:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\bin -Dfile.encoding=UTF-8
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 3 iterations, 10 s each
+# Measurement: 10 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: org.yakdanol.task15.utils.Benchmark.stressTestKafkaConfigThroughput
+
+# Run progress: 25,93% complete, ETA 00:43:52
+# Fork: 1 of 1
+# Warmup Iteration   1: 26742029,541 ops/s
+# Warmup Iteration   2: 22575992,708 ops/s
+# Warmup Iteration   3: 15301560,509 ops/s
+Iteration   1: 15652472,664 ops/s
+Iteration   2: 22820350,085 ops/s
+Iteration   3: 25551659,895 ops/s
+Iteration   4: 26800532,994 ops/s
+Iteration   5: 26944706,828 ops/s
+Iteration   6: 26905910,979 ops/s
+Iteration   7: 27067948,959 ops/s
+Iteration   8: 26975440,050 ops/s
+Iteration   9: 26901016,692 ops/s
+Iteration  10: 26922438,405 ops/s
+
+
+Result "org.yakdanol.task15.utils.Benchmark.stressTestKafkaConfigThroughput":
+  25254247,755 ±(99.9%) 5472695,159 ops/s [Average]
+  (min, avg, max) = (15652472,664, 25254247,755, 27067948,959), stdev = 3619849,000
+  CI (99.9%): [19781552,596, 30726942,914] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.12, Java HotSpot(TM) 64-Bit Server VM, 17.0.12+8-LTS-jvmci-23.0-b41
+# VM invoker: C:\Users\Yakdanol\.jdks\graalvm-jdk-17.0.12\bin\java.exe
+# VM options: -XX:ThreadPriorityPolicy=1 -XX:+UnlockExperimentalVMOptions -XX:+EnableJVMCIProduct -XX:-UnlockExperimentalVMOptions -XX:TieredStopAtLevel=1 -Dspring.output.ansi.enabled=always -Dcom.sun.management.jmxremote -Dspring.jmx.enabled=true -Dspring.liveBeansView.mbeanDomain -Dspring.application.admin.enabled=true -Dmanagement.endpoints.jmx.exposure.include=* -javaagent:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\lib\idea_rt.jar=58526:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\bin -Dfile.encoding=UTF-8
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 3 iterations, 10 s each
+# Measurement: 10 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: org.yakdanol.task15.utils.Benchmark.stressTestRabbitConfigThroughput
+
+# Run progress: 29,63% complete, ETA 00:41:41
+# Fork: 1 of 1
+# Warmup Iteration   1: 164,052 ops/s
+# Warmup Iteration   2: 168,340 ops/s
+# Warmup Iteration   3: 163,450 ops/s
+Iteration   1: 167,439 ops/s
+Iteration   2: 165,953 ops/s
+Iteration   3: 167,733 ops/s
+Iteration   4: 164,454 ops/s
+Iteration   5: 167,631 ops/s
+Iteration   6: 165,224 ops/s
+Iteration   7: 161,257 ops/s
+Iteration   8: 163,272 ops/s
+Iteration   9: 166,755 ops/s
+Iteration  10: 158,397 ops/s
+
+
+Result "org.yakdanol.task15.utils.Benchmark.stressTestRabbitConfigThroughput":
+  164,811 ±(99.9%) 4,644 ops/s [Average]
+  (min, avg, max) = (158,397, 164,811, 167,733), stdev = 3,072
+  CI (99.9%): [160,168, 169,455] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.12, Java HotSpot(TM) 64-Bit Server VM, 17.0.12+8-LTS-jvmci-23.0-b41
+# VM invoker: C:\Users\Yakdanol\.jdks\graalvm-jdk-17.0.12\bin\java.exe
+# VM options: -XX:ThreadPriorityPolicy=1 -XX:+UnlockExperimentalVMOptions -XX:+EnableJVMCIProduct -XX:-UnlockExperimentalVMOptions -XX:TieredStopAtLevel=1 -Dspring.output.ansi.enabled=always -Dcom.sun.management.jmxremote -Dspring.jmx.enabled=true -Dspring.liveBeansView.mbeanDomain -Dspring.application.admin.enabled=true -Dmanagement.endpoints.jmx.exposure.include=* -javaagent:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\lib\idea_rt.jar=58526:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\bin -Dfile.encoding=UTF-8
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 3 iterations, 10 s each
+# Measurement: 10 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.yakdanol.task15.utils.Benchmark.loadBalancingAndMultipleConsumersKafkaConfigConsumerLatency
+
+# Run progress: 33,33% complete, ETA 00:39:29
+# Fork: 1 of 1
+# Warmup Iteration   1: ≈ 10⁻⁶ ms/op
+# Warmup Iteration   2: ≈ 10⁻⁶ ms/op
+# Warmup Iteration   3: ≈ 10⁻⁶ ms/op
+Iteration   1: ≈ 10⁻⁶ ms/op
+Iteration   2: ≈ 10⁻⁶ ms/op
+Iteration   3: ≈ 10⁻⁶ ms/op
+Iteration   4: ≈ 10⁻⁶ ms/op
+Iteration   5: ≈ 10⁻⁶ ms/op
+Iteration   6: ≈ 10⁻⁶ ms/op
+Iteration   7: ≈ 10⁻⁶ ms/op
+Iteration   8: ≈ 10⁻⁶ ms/op
+Iteration   9: ≈ 10⁻⁶ ms/op
+Iteration  10: ≈ 10⁻⁶ ms/op
+
+
+Result "org.yakdanol.task15.utils.Benchmark.loadBalancingAndMultipleConsumersKafkaConfigConsumerLatency":
+  ≈ 10⁻⁶ ms/op
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.12, Java HotSpot(TM) 64-Bit Server VM, 17.0.12+8-LTS-jvmci-23.0-b41
+# VM invoker: C:\Users\Yakdanol\.jdks\graalvm-jdk-17.0.12\bin\java.exe
+# VM options: -XX:ThreadPriorityPolicy=1 -XX:+UnlockExperimentalVMOptions -XX:+EnableJVMCIProduct -XX:-UnlockExperimentalVMOptions -XX:TieredStopAtLevel=1 -Dspring.output.ansi.enabled=always -Dcom.sun.management.jmxremote -Dspring.jmx.enabled=true -Dspring.liveBeansView.mbeanDomain -Dspring.application.admin.enabled=true -Dmanagement.endpoints.jmx.exposure.include=* -javaagent:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\lib\idea_rt.jar=58526:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\bin -Dfile.encoding=UTF-8
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 3 iterations, 10 s each
+# Measurement: 10 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.yakdanol.task15.utils.Benchmark.loadBalancingAndMultipleConsumersKafkaConfigProducerLatency
+
+# Run progress: 37,04% complete, ETA 00:37:18
+# Fork: 1 of 1
+# Warmup Iteration   1: ≈ 10⁻⁴ ms/op
+# Warmup Iteration   2: ≈ 10⁻⁴ ms/op
+# Warmup Iteration   3: ≈ 10⁻⁴ ms/op
+Iteration   1: ≈ 10⁻⁴ ms/op
+Iteration   2: ≈ 10⁻⁴ ms/op
+Iteration   3: ≈ 10⁻⁴ ms/op
+Iteration   4: ≈ 10⁻⁴ ms/op
+Iteration   5: ≈ 10⁻⁴ ms/op
+Iteration   6: ≈ 10⁻⁴ ms/op
+Iteration   7: ≈ 10⁻⁴ ms/op
+Iteration   8: ≈ 10⁻⁴ ms/op
+Iteration   9: ≈ 10⁻⁴ ms/op
+Iteration  10: ≈ 10⁻⁴ ms/op
+
+
+Result "org.yakdanol.task15.utils.Benchmark.loadBalancingAndMultipleConsumersKafkaConfigProducerLatency":
+  ≈ 10⁻⁴ ms/op
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.12, Java HotSpot(TM) 64-Bit Server VM, 17.0.12+8-LTS-jvmci-23.0-b41
+# VM invoker: C:\Users\Yakdanol\.jdks\graalvm-jdk-17.0.12\bin\java.exe
+# VM options: -XX:ThreadPriorityPolicy=1 -XX:+UnlockExperimentalVMOptions -XX:+EnableJVMCIProduct -XX:-UnlockExperimentalVMOptions -XX:TieredStopAtLevel=1 -Dspring.output.ansi.enabled=always -Dcom.sun.management.jmxremote -Dspring.jmx.enabled=true -Dspring.liveBeansView.mbeanDomain -Dspring.application.admin.enabled=true -Dmanagement.endpoints.jmx.exposure.include=* -javaagent:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\lib\idea_rt.jar=58526:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\bin -Dfile.encoding=UTF-8
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 3 iterations, 10 s each
+# Measurement: 10 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.yakdanol.task15.utils.Benchmark.loadBalancingAndMultipleConsumersRabbitConfigConsumerLatency
+
+# Run progress: 40,74% complete, ETA 00:35:06
+# Fork: 1 of 1
+# Warmup Iteration   1: 1,659 ms/op
+# Warmup Iteration   2: 1,656 ms/op
+# Warmup Iteration   3: 1,601 ms/op
+Iteration   1: 1,659 ms/op
+Iteration   2: 1,628 ms/op
+Iteration   3: 1,661 ms/op
+Iteration   4: 1,645 ms/op
+Iteration   5: 1,650 ms/op
+Iteration   6: 1,684 ms/op
+Iteration   7: 1,661 ms/op
+Iteration   8: 1,621 ms/op
+Iteration   9: 1,536 ms/op
+Iteration  10: 1,554 ms/op
+
+
+Result "org.yakdanol.task15.utils.Benchmark.loadBalancingAndMultipleConsumersRabbitConfigConsumerLatency":
+  1,630 ±(99.9%) 0,073 ms/op [Average]
+  (min, avg, max) = (1,536, 1,630, 1,684), stdev = 0,048
+  CI (99.9%): [1,557, 1,703] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.12, Java HotSpot(TM) 64-Bit Server VM, 17.0.12+8-LTS-jvmci-23.0-b41
+# VM invoker: C:\Users\Yakdanol\.jdks\graalvm-jdk-17.0.12\bin\java.exe
+# VM options: -XX:ThreadPriorityPolicy=1 -XX:+UnlockExperimentalVMOptions -XX:+EnableJVMCIProduct -XX:-UnlockExperimentalVMOptions -XX:TieredStopAtLevel=1 -Dspring.output.ansi.enabled=always -Dcom.sun.management.jmxremote -Dspring.jmx.enabled=true -Dspring.liveBeansView.mbeanDomain -Dspring.application.admin.enabled=true -Dmanagement.endpoints.jmx.exposure.include=* -javaagent:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\lib\idea_rt.jar=58526:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\bin -Dfile.encoding=UTF-8
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 3 iterations, 10 s each
+# Measurement: 10 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.yakdanol.task15.utils.Benchmark.loadBalancingAndMultipleConsumersRabbitConfigProducerLatency
+
+# Run progress: 44,44% complete, ETA 00:32:54
+# Fork: 1 of 1
+# Warmup Iteration   1: 0,074 ms/op
+# Warmup Iteration   2: 0,072 ms/op
+# Warmup Iteration   3: 0,105 ms/op
+Iteration   1: 0,077 ms/op
+Iteration   2: 0,061 ms/op
+Iteration   3: 0,068 ms/op
+Iteration   4: 0,103 ms/op
+Iteration   5: 0,102 ms/op
+Iteration   6: 0,075 ms/op
+Iteration   7: 0,067 ms/op
+Iteration   8: 0,064 ms/op
+Iteration   9: 0,061 ms/op
+Iteration  10: 0,058 ms/op
+
+
+Result "org.yakdanol.task15.utils.Benchmark.loadBalancingAndMultipleConsumersRabbitConfigProducerLatency":
+  0,074 ±(99.9%) 0,025 ms/op [Average]
+  (min, avg, max) = (0,058, 0,074, 0,103), stdev = 0,017
+  CI (99.9%): [0,049, 0,098] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.12, Java HotSpot(TM) 64-Bit Server VM, 17.0.12+8-LTS-jvmci-23.0-b41
+# VM invoker: C:\Users\Yakdanol\.jdks\graalvm-jdk-17.0.12\bin\java.exe
+# VM options: -XX:ThreadPriorityPolicy=1 -XX:+UnlockExperimentalVMOptions -XX:+EnableJVMCIProduct -XX:-UnlockExperimentalVMOptions -XX:TieredStopAtLevel=1 -Dspring.output.ansi.enabled=always -Dcom.sun.management.jmxremote -Dspring.jmx.enabled=true -Dspring.liveBeansView.mbeanDomain -Dspring.application.admin.enabled=true -Dmanagement.endpoints.jmx.exposure.include=* -javaagent:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\lib\idea_rt.jar=58526:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\bin -Dfile.encoding=UTF-8
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 3 iterations, 10 s each
+# Measurement: 10 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.yakdanol.task15.utils.Benchmark.loadBalancingKafkaConfigConsumerLatency
+
+# Run progress: 48,15% complete, ETA 00:30:43
+# Fork: 1 of 1
+# Warmup Iteration   1: ≈ 10⁻⁶ ms/op
+# Warmup Iteration   2: ≈ 10⁻⁶ ms/op
+# Warmup Iteration   3: ≈ 10⁻⁶ ms/op
+Iteration   1: ≈ 10⁻⁶ ms/op
+Iteration   2: ≈ 10⁻⁶ ms/op
+Iteration   3: ≈ 10⁻⁶ ms/op
+Iteration   4: ≈ 10⁻⁶ ms/op
+Iteration   5: ≈ 10⁻⁶ ms/op
+Iteration   6: ≈ 10⁻⁶ ms/op
+Iteration   7: ≈ 10⁻⁶ ms/op
+Iteration   8: ≈ 10⁻⁶ ms/op
+Iteration   9: ≈ 10⁻⁶ ms/op
+Iteration  10: ≈ 10⁻⁶ ms/op
+
+
+Result "org.yakdanol.task15.utils.Benchmark.loadBalancingKafkaConfigConsumerLatency":
+  ≈ 10⁻⁶ ms/op
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.12, Java HotSpot(TM) 64-Bit Server VM, 17.0.12+8-LTS-jvmci-23.0-b41
+# VM invoker: C:\Users\Yakdanol\.jdks\graalvm-jdk-17.0.12\bin\java.exe
+# VM options: -XX:ThreadPriorityPolicy=1 -XX:+UnlockExperimentalVMOptions -XX:+EnableJVMCIProduct -XX:-UnlockExperimentalVMOptions -XX:TieredStopAtLevel=1 -Dspring.output.ansi.enabled=always -Dcom.sun.management.jmxremote -Dspring.jmx.enabled=true -Dspring.liveBeansView.mbeanDomain -Dspring.application.admin.enabled=true -Dmanagement.endpoints.jmx.exposure.include=* -javaagent:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\lib\idea_rt.jar=58526:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\bin -Dfile.encoding=UTF-8
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 3 iterations, 10 s each
+# Measurement: 10 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.yakdanol.task15.utils.Benchmark.loadBalancingKafkaConfigProducerLatency
+
+# Run progress: 51,85% complete, ETA 00:28:31
+# Fork: 1 of 1
+# Warmup Iteration   1: ≈ 10⁻⁴ ms/op
+# Warmup Iteration   2: ≈ 10⁻⁴ ms/op
+# Warmup Iteration   3: ≈ 10⁻⁴ ms/op
+Iteration   1: ≈ 10⁻⁴ ms/op
+Iteration   2: ≈ 10⁻⁴ ms/op
+Iteration   3: ≈ 10⁻⁴ ms/op
+Iteration   4: ≈ 10⁻⁴ ms/op
+Iteration   5: ≈ 10⁻⁴ ms/op
+Iteration   6: ≈ 10⁻⁴ ms/op
+Iteration   7: ≈ 10⁻⁴ ms/op
+Iteration   8: ≈ 10⁻⁴ ms/op
+Iteration   9: ≈ 10⁻⁴ ms/op
+Iteration  10: ≈ 10⁻⁴ ms/op
+
+
+Result "org.yakdanol.task15.utils.Benchmark.loadBalancingKafkaConfigProducerLatency":
+  ≈ 10⁻⁴ ms/op
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.12, Java HotSpot(TM) 64-Bit Server VM, 17.0.12+8-LTS-jvmci-23.0-b41
+# VM invoker: C:\Users\Yakdanol\.jdks\graalvm-jdk-17.0.12\bin\java.exe
+# VM options: -XX:ThreadPriorityPolicy=1 -XX:+UnlockExperimentalVMOptions -XX:+EnableJVMCIProduct -XX:-UnlockExperimentalVMOptions -XX:TieredStopAtLevel=1 -Dspring.output.ansi.enabled=always -Dcom.sun.management.jmxremote -Dspring.jmx.enabled=true -Dspring.liveBeansView.mbeanDomain -Dspring.application.admin.enabled=true -Dmanagement.endpoints.jmx.exposure.include=* -javaagent:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\lib\idea_rt.jar=58526:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\bin -Dfile.encoding=UTF-8
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 3 iterations, 10 s each
+# Measurement: 10 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.yakdanol.task15.utils.Benchmark.loadBalancingRabbitConfigConsumerLatency
+
+# Run progress: 55,56% complete, ETA 00:26:19
+# Fork: 1 of 1
+# Warmup Iteration   1: 0,556 ms/op
+# Warmup Iteration   2: 0,534 ms/op
+# Warmup Iteration   3: 0,534 ms/op
+Iteration   1: 0,553 ms/op
+Iteration   2: 0,554 ms/op
+Iteration   3: 0,579 ms/op
+Iteration   4: 0,577 ms/op
+Iteration   5: 0,564 ms/op
+Iteration   6: 0,553 ms/op
+Iteration   7: 0,553 ms/op
+Iteration   8: 0,555 ms/op
+Iteration   9: 0,552 ms/op
+Iteration  10: 0,555 ms/op
+
+
+Result "org.yakdanol.task15.utils.Benchmark.loadBalancingRabbitConfigConsumerLatency":
+  0,560 ±(99.9%) 0,016 ms/op [Average]
+  (min, avg, max) = (0,552, 0,560, 0,579), stdev = 0,010
+  CI (99.9%): [0,544, 0,575] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.12, Java HotSpot(TM) 64-Bit Server VM, 17.0.12+8-LTS-jvmci-23.0-b41
+# VM invoker: C:\Users\Yakdanol\.jdks\graalvm-jdk-17.0.12\bin\java.exe
+# VM options: -XX:ThreadPriorityPolicy=1 -XX:+UnlockExperimentalVMOptions -XX:+EnableJVMCIProduct -XX:-UnlockExperimentalVMOptions -XX:TieredStopAtLevel=1 -Dspring.output.ansi.enabled=always -Dcom.sun.management.jmxremote -Dspring.jmx.enabled=true -Dspring.liveBeansView.mbeanDomain -Dspring.application.admin.enabled=true -Dmanagement.endpoints.jmx.exposure.include=* -javaagent:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\lib\idea_rt.jar=58526:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\bin -Dfile.encoding=UTF-8
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 3 iterations, 10 s each
+# Measurement: 10 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.yakdanol.task15.utils.Benchmark.loadBalancingRabbitConfigProducerLatency
+
+# Run progress: 59,26% complete, ETA 00:24:08
+# Fork: 1 of 1
+# Warmup Iteration   1: 0,064 ms/op
+# Warmup Iteration   2: 0,068 ms/op
+# Warmup Iteration   3: 0,069 ms/op
+Iteration   1: 0,077 ms/op
+Iteration   2: 0,070 ms/op
+Iteration   3: 0,070 ms/op
+Iteration   4: 0,080 ms/op
+Iteration   5: 0,071 ms/op
+Iteration   6: 0,078 ms/op
+Iteration   7: 0,066 ms/op
+Iteration   8: 0,073 ms/op
+Iteration   9: 0,063 ms/op
+Iteration  10: 0,092 ms/op
+
+
+Result "org.yakdanol.task15.utils.Benchmark.loadBalancingRabbitConfigProducerLatency":
+  0,074 ±(99.9%) 0,013 ms/op [Average]
+  (min, avg, max) = (0,063, 0,074, 0,092), stdev = 0,008
+  CI (99.9%): [0,061, 0,086] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.12, Java HotSpot(TM) 64-Bit Server VM, 17.0.12+8-LTS-jvmci-23.0-b41
+# VM invoker: C:\Users\Yakdanol\.jdks\graalvm-jdk-17.0.12\bin\java.exe
+# VM options: -XX:ThreadPriorityPolicy=1 -XX:+UnlockExperimentalVMOptions -XX:+EnableJVMCIProduct -XX:-UnlockExperimentalVMOptions -XX:TieredStopAtLevel=1 -Dspring.output.ansi.enabled=always -Dcom.sun.management.jmxremote -Dspring.jmx.enabled=true -Dspring.liveBeansView.mbeanDomain -Dspring.application.admin.enabled=true -Dmanagement.endpoints.jmx.exposure.include=* -javaagent:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\lib\idea_rt.jar=58526:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\bin -Dfile.encoding=UTF-8
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 3 iterations, 10 s each
+# Measurement: 10 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.yakdanol.task15.utils.Benchmark.multipleConsumersRabbitConfigConsumerLatency
+
+# Run progress: 62,96% complete, ETA 00:21:56
+# Fork: 1 of 1
+# Warmup Iteration   1: 1,646 ms/op
+# Warmup Iteration   2: 1,661 ms/op
+# Warmup Iteration   3: 1,665 ms/op
+Iteration   1: 1,641 ms/op
+Iteration   2: 1,653 ms/op
+Iteration   3: 1,677 ms/op
+Iteration   4: 1,677 ms/op
+Iteration   5: 1,679 ms/op
+Iteration   6: 1,675 ms/op
+Iteration   7: 1,676 ms/op
+Iteration   8: 1,651 ms/op
+Iteration   9: 1,681 ms/op
+Iteration  10: 1,667 ms/op
+
+
+Result "org.yakdanol.task15.utils.Benchmark.multipleConsumersRabbitConfigConsumerLatency":
+  1,668 ±(99.9%) 0,021 ms/op [Average]
+  (min, avg, max) = (1,641, 1,668, 1,681), stdev = 0,014
+  CI (99.9%): [1,647, 1,689] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.12, Java HotSpot(TM) 64-Bit Server VM, 17.0.12+8-LTS-jvmci-23.0-b41
+# VM invoker: C:\Users\Yakdanol\.jdks\graalvm-jdk-17.0.12\bin\java.exe
+# VM options: -XX:ThreadPriorityPolicy=1 -XX:+UnlockExperimentalVMOptions -XX:+EnableJVMCIProduct -XX:-UnlockExperimentalVMOptions -XX:TieredStopAtLevel=1 -Dspring.output.ansi.enabled=always -Dcom.sun.management.jmxremote -Dspring.jmx.enabled=true -Dspring.liveBeansView.mbeanDomain -Dspring.application.admin.enabled=true -Dmanagement.endpoints.jmx.exposure.include=* -javaagent:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\lib\idea_rt.jar=58526:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\bin -Dfile.encoding=UTF-8
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 3 iterations, 10 s each
+# Measurement: 10 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.yakdanol.task15.utils.Benchmark.multipleConsumersRabbitConfigProducerLatency
+
+# Run progress: 66,67% complete, ETA 00:19:44
+# Fork: 1 of 1
+# Warmup Iteration   1: 0,027 ms/op
+# Warmup Iteration   2: 0,026 ms/op
+# Warmup Iteration   3: 0,027 ms/op
+Iteration   1: 0,027 ms/op
+Iteration   2: 0,027 ms/op
+Iteration   3: 0,023 ms/op
+Iteration   4: 0,022 ms/op
+Iteration   5: 0,022 ms/op
+Iteration   6: 0,024 ms/op
+Iteration   7: 0,024 ms/op
+Iteration   8: 0,024 ms/op
+Iteration   9: 0,025 ms/op
+Iteration  10: 0,028 ms/op
+
+
+Result "org.yakdanol.task15.utils.Benchmark.multipleConsumersRabbitConfigProducerLatency":
+  0,025 ±(99.9%) 0,003 ms/op [Average]
+  (min, avg, max) = (0,022, 0,025, 0,028), stdev = 0,002
+  CI (99.9%): [0,022, 0,028] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.12, Java HotSpot(TM) 64-Bit Server VM, 17.0.12+8-LTS-jvmci-23.0-b41
+# VM invoker: C:\Users\Yakdanol\.jdks\graalvm-jdk-17.0.12\bin\java.exe
+# VM options: -XX:ThreadPriorityPolicy=1 -XX:+UnlockExperimentalVMOptions -XX:+EnableJVMCIProduct -XX:-UnlockExperimentalVMOptions -XX:TieredStopAtLevel=1 -Dspring.output.ansi.enabled=always -Dcom.sun.management.jmxremote -Dspring.jmx.enabled=true -Dspring.liveBeansView.mbeanDomain -Dspring.application.admin.enabled=true -Dmanagement.endpoints.jmx.exposure.include=* -javaagent:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\lib\idea_rt.jar=58526:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\bin -Dfile.encoding=UTF-8
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 3 iterations, 10 s each
+# Measurement: 10 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.yakdanol.task15.utils.Benchmark.multipleConsumersStressTestKafkaConfigConsumerLatency
+
+# Run progress: 70,37% complete, ETA 00:17:33
+# Fork: 1 of 1
+# Warmup Iteration   1: ≈ 10⁻⁵ ms/op
+# Warmup Iteration   2: ≈ 10⁻⁶ ms/op
+# Warmup Iteration   3: ≈ 10⁻⁶ ms/op
+Iteration   1: ≈ 10⁻⁶ ms/op
+Iteration   2: ≈ 10⁻⁶ ms/op
+Iteration   3: ≈ 10⁻⁶ ms/op
+Iteration   4: ≈ 10⁻⁶ ms/op
+Iteration   5: ≈ 10⁻⁶ ms/op
+Iteration   6: ≈ 10⁻⁶ ms/op
+Iteration   7: ≈ 10⁻⁶ ms/op
+Iteration   8: ≈ 10⁻⁶ ms/op
+Iteration   9: ≈ 10⁻⁶ ms/op
+Iteration  10: ≈ 10⁻⁶ ms/op
+
+
+Result "org.yakdanol.task15.utils.Benchmark.multipleConsumersStressTestKafkaConfigConsumerLatency":
+  ≈ 10⁻⁶ ms/op
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.12, Java HotSpot(TM) 64-Bit Server VM, 17.0.12+8-LTS-jvmci-23.0-b41
+# VM invoker: C:\Users\Yakdanol\.jdks\graalvm-jdk-17.0.12\bin\java.exe
+# VM options: -XX:ThreadPriorityPolicy=1 -XX:+UnlockExperimentalVMOptions -XX:+EnableJVMCIProduct -XX:-UnlockExperimentalVMOptions -XX:TieredStopAtLevel=1 -Dspring.output.ansi.enabled=always -Dcom.sun.management.jmxremote -Dspring.jmx.enabled=true -Dspring.liveBeansView.mbeanDomain -Dspring.application.admin.enabled=true -Dmanagement.endpoints.jmx.exposure.include=* -javaagent:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\lib\idea_rt.jar=58526:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\bin -Dfile.encoding=UTF-8
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 3 iterations, 10 s each
+# Measurement: 10 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.yakdanol.task15.utils.Benchmark.multipleConsumersStressTestKafkaConfigProducerLatency
+
+# Run progress: 74,07% complete, ETA 00:15:21
+# Fork: 1 of 1
+# Warmup Iteration   1: ≈ 10⁻⁴ ms/op
+# Warmup Iteration   2: ≈ 10⁻⁴ ms/op
+# Warmup Iteration   3: ≈ 10⁻⁴ ms/op
+Iteration   1: ≈ 10⁻⁴ ms/op
+Iteration   2: ≈ 10⁻⁴ ms/op
+Iteration   3: ≈ 10⁻⁴ ms/op
+Iteration   4: ≈ 10⁻⁴ ms/op
+Iteration   5: ≈ 10⁻⁴ ms/op
+Iteration   6: ≈ 10⁻⁴ ms/op
+Iteration   7: ≈ 10⁻⁴ ms/op
+Iteration   8: ≈ 10⁻⁴ ms/op
+Iteration   9: ≈ 10⁻⁴ ms/op
+Iteration  10: ≈ 10⁻⁴ ms/op
+
+
+Result "org.yakdanol.task15.utils.Benchmark.multipleConsumersStressTestKafkaConfigProducerLatency":
+  ≈ 10⁻⁴ ms/op
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.12, Java HotSpot(TM) 64-Bit Server VM, 17.0.12+8-LTS-jvmci-23.0-b41
+# VM invoker: C:\Users\Yakdanol\.jdks\graalvm-jdk-17.0.12\bin\java.exe
+# VM options: -XX:ThreadPriorityPolicy=1 -XX:+UnlockExperimentalVMOptions -XX:+EnableJVMCIProduct -XX:-UnlockExperimentalVMOptions -XX:TieredStopAtLevel=1 -Dspring.output.ansi.enabled=always -Dcom.sun.management.jmxremote -Dspring.jmx.enabled=true -Dspring.liveBeansView.mbeanDomain -Dspring.application.admin.enabled=true -Dmanagement.endpoints.jmx.exposure.include=* -javaagent:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\lib\idea_rt.jar=58526:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\bin -Dfile.encoding=UTF-8
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 3 iterations, 10 s each
+# Measurement: 10 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.yakdanol.task15.utils.Benchmark.simpleRabbitConsumerLatency
+
+# Run progress: 77,78% complete, ETA 00:13:09
+# Fork: 1 of 1
+# Warmup Iteration   1: 0,561 ms/op
+# Warmup Iteration   2: 0,556 ms/op
+# Warmup Iteration   3: 0,555 ms/op
+Iteration   1: 0,548 ms/op
+Iteration   2: 0,553 ms/op
+Iteration   3: 0,555 ms/op
+Iteration   4: 0,549 ms/op
+Iteration   5: 0,555 ms/op
+Iteration   6: 0,562 ms/op
+Iteration   7: 0,560 ms/op
+Iteration   8: 0,556 ms/op
+Iteration   9: 0,565 ms/op
+Iteration  10: 0,559 ms/op
+
+
+Result "org.yakdanol.task15.utils.Benchmark.simpleRabbitConsumerLatency":
+  0,556 ±(99.9%) 0,008 ms/op [Average]
+  (min, avg, max) = (0,548, 0,556, 0,565), stdev = 0,005
+  CI (99.9%): [0,548, 0,564] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.12, Java HotSpot(TM) 64-Bit Server VM, 17.0.12+8-LTS-jvmci-23.0-b41
+# VM invoker: C:\Users\Yakdanol\.jdks\graalvm-jdk-17.0.12\bin\java.exe
+# VM options: -XX:ThreadPriorityPolicy=1 -XX:+UnlockExperimentalVMOptions -XX:+EnableJVMCIProduct -XX:-UnlockExperimentalVMOptions -XX:TieredStopAtLevel=1 -Dspring.output.ansi.enabled=always -Dcom.sun.management.jmxremote -Dspring.jmx.enabled=true -Dspring.liveBeansView.mbeanDomain -Dspring.application.admin.enabled=true -Dmanagement.endpoints.jmx.exposure.include=* -javaagent:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\lib\idea_rt.jar=58526:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\bin -Dfile.encoding=UTF-8
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 3 iterations, 10 s each
+# Measurement: 10 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.yakdanol.task15.utils.Benchmark.simpleRabbitProducerLatency
+
+# Run progress: 81,48% complete, ETA 00:10:58
+# Fork: 1 of 1
+# Warmup Iteration   1: 0,022 ms/op
+# Warmup Iteration   2: 0,022 ms/op
+# Warmup Iteration   3: 0,020 ms/op
+Iteration   1: 0,020 ms/op
+Iteration   2: 0,022 ms/op
+Iteration   3: 0,026 ms/op
+Iteration   4: 0,025 ms/op
+Iteration   5: 0,026 ms/op
+Iteration   6: 0,026 ms/op
+Iteration   7: 0,023 ms/op
+Iteration   8: 0,020 ms/op
+Iteration   9: 0,020 ms/op
+Iteration  10: 0,022 ms/op
+
+
+Result "org.yakdanol.task15.utils.Benchmark.simpleRabbitProducerLatency":
+  0,023 ±(99.9%) 0,004 ms/op [Average]
+  (min, avg, max) = (0,020, 0,023, 0,026), stdev = 0,003
+  CI (99.9%): [0,019, 0,027] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.12, Java HotSpot(TM) 64-Bit Server VM, 17.0.12+8-LTS-jvmci-23.0-b41
+# VM invoker: C:\Users\Yakdanol\.jdks\graalvm-jdk-17.0.12\bin\java.exe
+# VM options: -XX:ThreadPriorityPolicy=1 -XX:+UnlockExperimentalVMOptions -XX:+EnableJVMCIProduct -XX:-UnlockExperimentalVMOptions -XX:TieredStopAtLevel=1 -Dspring.output.ansi.enabled=always -Dcom.sun.management.jmxremote -Dspring.jmx.enabled=true -Dspring.liveBeansView.mbeanDomain -Dspring.application.admin.enabled=true -Dmanagement.endpoints.jmx.exposure.include=* -javaagent:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\lib\idea_rt.jar=58526:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\bin -Dfile.encoding=UTF-8
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 3 iterations, 10 s each
+# Measurement: 10 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.yakdanol.task15.utils.Benchmark.stressTestKafkaConfigConsumerLatency
+
+# Run progress: 85,19% complete, ETA 00:08:46
+# Fork: 1 of 1
+# Warmup Iteration   1: ≈ 10⁻⁶ ms/op
+# Warmup Iteration   2: ≈ 10⁻⁶ ms/op
+# Warmup Iteration   3: ≈ 10⁻⁶ ms/op
+Iteration   1: ≈ 10⁻⁶ ms/op
+Iteration   2: ≈ 10⁻⁶ ms/op
+Iteration   3: ≈ 10⁻⁶ ms/op
+Iteration   4: ≈ 10⁻⁶ ms/op
+Iteration   5: ≈ 10⁻⁶ ms/op
+Iteration   6: ≈ 10⁻⁶ ms/op
+Iteration   7: ≈ 10⁻⁶ ms/op
+Iteration   8: ≈ 10⁻⁶ ms/op
+Iteration   9: ≈ 10⁻⁶ ms/op
+Iteration  10: ≈ 10⁻⁶ ms/op
+
+
+Result "org.yakdanol.task15.utils.Benchmark.stressTestKafkaConfigConsumerLatency":
+  ≈ 10⁻⁶ ms/op
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.12, Java HotSpot(TM) 64-Bit Server VM, 17.0.12+8-LTS-jvmci-23.0-b41
+# VM invoker: C:\Users\Yakdanol\.jdks\graalvm-jdk-17.0.12\bin\java.exe
+# VM options: -XX:ThreadPriorityPolicy=1 -XX:+UnlockExperimentalVMOptions -XX:+EnableJVMCIProduct -XX:-UnlockExperimentalVMOptions -XX:TieredStopAtLevel=1 -Dspring.output.ansi.enabled=always -Dcom.sun.management.jmxremote -Dspring.jmx.enabled=true -Dspring.liveBeansView.mbeanDomain -Dspring.application.admin.enabled=true -Dmanagement.endpoints.jmx.exposure.include=* -javaagent:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\lib\idea_rt.jar=58526:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\bin -Dfile.encoding=UTF-8
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 3 iterations, 10 s each
+# Measurement: 10 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.yakdanol.task15.utils.Benchmark.stressTestKafkaConfigProducerLatency
+
+# Run progress: 88,89% complete, ETA 00:06:35
+# Fork: 1 of 1
+# Warmup Iteration   1: ≈ 10⁻⁴ ms/op
+# Warmup Iteration   2: ≈ 10⁻⁴ ms/op
+# Warmup Iteration   3: ≈ 10⁻⁴ ms/op
+Iteration   1: ≈ 10⁻⁴ ms/op
+Iteration   2: ≈ 10⁻⁴ ms/op
+Iteration   3: ≈ 10⁻⁴ ms/op
+Iteration   4: ≈ 10⁻⁴ ms/op
+Iteration   5: ≈ 10⁻⁴ ms/op
+Iteration   6: ≈ 10⁻⁴ ms/op
+Iteration   7: ≈ 10⁻⁴ ms/op
+Iteration   8: ≈ 10⁻⁴ ms/op
+Iteration   9: ≈ 10⁻⁴ ms/op
+Iteration  10: ≈ 10⁻⁴ ms/op
+
+
+Result "org.yakdanol.task15.utils.Benchmark.stressTestKafkaConfigProducerLatency":
+  ≈ 10⁻⁴ ms/op
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.12, Java HotSpot(TM) 64-Bit Server VM, 17.0.12+8-LTS-jvmci-23.0-b41
+# VM invoker: C:\Users\Yakdanol\.jdks\graalvm-jdk-17.0.12\bin\java.exe
+# VM options: -XX:ThreadPriorityPolicy=1 -XX:+UnlockExperimentalVMOptions -XX:+EnableJVMCIProduct -XX:-UnlockExperimentalVMOptions -XX:TieredStopAtLevel=1 -Dspring.output.ansi.enabled=always -Dcom.sun.management.jmxremote -Dspring.jmx.enabled=true -Dspring.liveBeansView.mbeanDomain -Dspring.application.admin.enabled=true -Dmanagement.endpoints.jmx.exposure.include=* -javaagent:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\lib\idea_rt.jar=58526:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\bin -Dfile.encoding=UTF-8
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 3 iterations, 10 s each
+# Measurement: 10 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.yakdanol.task15.utils.Benchmark.stressTestRabbitConfigConsumerLatency
+
+# Run progress: 92,59% complete, ETA 00:04:23
+# Fork: 1 of 1
+# Warmup Iteration   1: 5,616 ms/op
+# Warmup Iteration   2: 5,561 ms/op
+# Warmup Iteration   3: 5,384 ms/op
+Iteration   1: 5,486 ms/op
+Iteration   2: 5,377 ms/op
+Iteration   3: 5,396 ms/op
+Iteration   4: 5,416 ms/op
+Iteration   5: 5,536 ms/op
+Iteration   6: 5,484 ms/op
+Iteration   7: 5,495 ms/op
+Iteration   8: 5,542 ms/op
+Iteration   9: 5,571 ms/op
+Iteration  10: 5,606 ms/op
+
+
+Result "org.yakdanol.task15.utils.Benchmark.stressTestRabbitConfigConsumerLatency":
+  5,491 ±(99.9%) 0,115 ms/op [Average]
+  (min, avg, max) = (5,377, 5,491, 5,606), stdev = 0,076
+  CI (99.9%): [5,376, 5,606] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.12, Java HotSpot(TM) 64-Bit Server VM, 17.0.12+8-LTS-jvmci-23.0-b41
+# VM invoker: C:\Users\Yakdanol\.jdks\graalvm-jdk-17.0.12\bin\java.exe
+# VM options: -XX:ThreadPriorityPolicy=1 -XX:+UnlockExperimentalVMOptions -XX:+EnableJVMCIProduct -XX:-UnlockExperimentalVMOptions -XX:TieredStopAtLevel=1 -Dspring.output.ansi.enabled=always -Dcom.sun.management.jmxremote -Dspring.jmx.enabled=true -Dspring.liveBeansView.mbeanDomain -Dspring.application.admin.enabled=true -Dmanagement.endpoints.jmx.exposure.include=* -javaagent:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\lib\idea_rt.jar=58526:C:\Users\Yakdanol\AppData\Local\Programs\IntelliJ IDEA Ultimate\bin -Dfile.encoding=UTF-8
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 3 iterations, 10 s each
+# Measurement: 10 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.yakdanol.task15.utils.Benchmark.stressTestRabbitConfigProducerLatency
+
+# Run progress: 96,30% complete, ETA 00:02:11
+# Fork: 1 of 1
+# Warmup Iteration   1: 0,228 ms/op
+# Warmup Iteration   2: 0,199 ms/op
+# Warmup Iteration   3: 0,195 ms/op
+Iteration   1: 0,209 ms/op
+Iteration   2: 0,199 ms/op
+Iteration   3: 0,199 ms/op
+Iteration   4: 0,189 ms/op
+Iteration   5: 0,207 ms/op
+Iteration   6: 0,193 ms/op
+Iteration   7: 0,201 ms/op
+Iteration   8: 0,205 ms/op
+Iteration   9: 0,211 ms/op
+Iteration  10: 0,202 ms/op
+
+
+Result "org.yakdanol.task15.utils.Benchmark.stressTestRabbitConfigProducerLatency":
+  0,201 ±(99.9%) 0,010 ms/op [Average]
+  (min, avg, max) = (0,189, 0,201, 0,211), stdev = 0,007
+  CI (99.9%): [0,191, 0,212] (assumes normal distribution)
+
+
+# Run complete. Total time: 00:59:15
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                                                                Mode  Cnt         Score         Error  Units
+Benchmark.loadBalancingAndMultipleConsumersKafkaConfigThroughput        thrpt   10  26226161,546 ± 3261576,279  ops/s
+Benchmark.loadBalancingAndMultipleConsumersRabbitConfigThroughput       thrpt   10       468,794 ±      18,786  ops/s
+Benchmark.loadBalancingKafkaConfigThroughput                            thrpt   10  25673930,022 ± 3241590,588  ops/s
+Benchmark.loadBalancingRabbitConfigThroughput                           thrpt   10      1285,685 ±      77,248  ops/s
+Benchmark.multipleConsumersRabbitConfigThroughput                       thrpt   10       586,184 ±      13,132  ops/s
+Benchmark.multipleConsumersStressTestRabbitConfigThroughput             thrpt   10  21666375,384 ± 8895493,116  ops/s
+Benchmark.simpleRabbitThroughput                                        thrpt   10      1541,848 ±      93,020  ops/s
+Benchmark.stressTestKafkaConfigThroughput                               thrpt   10  25254247,755 ± 5472695,159  ops/s
+Benchmark.stressTestRabbitConfigThroughput                              thrpt   10       164,811 ±       4,644  ops/s
+Benchmark.loadBalancingAndMultipleConsumersKafkaConfigConsumerLatency    avgt   10        ≈ 10⁻⁶                ms/op
+Benchmark.loadBalancingAndMultipleConsumersKafkaConfigProducerLatency    avgt   10        ≈ 10⁻⁴                ms/op
+Benchmark.loadBalancingAndMultipleConsumersRabbitConfigConsumerLatency   avgt   10         1,630 ±       0,073  ms/op
+Benchmark.loadBalancingAndMultipleConsumersRabbitConfigProducerLatency   avgt   10         0,074 ±       0,025  ms/op
+Benchmark.loadBalancingKafkaConfigConsumerLatency                        avgt   10        ≈ 10⁻⁶                ms/op
+Benchmark.loadBalancingKafkaConfigProducerLatency                        avgt   10        ≈ 10⁻⁴                ms/op
+Benchmark.loadBalancingRabbitConfigConsumerLatency                       avgt   10         0,560 ±       0,016  ms/op
+Benchmark.loadBalancingRabbitConfigProducerLatency                       avgt   10         0,074 ±       0,013  ms/op
+Benchmark.multipleConsumersRabbitConfigConsumerLatency                   avgt   10         1,668 ±       0,021  ms/op
+Benchmark.multipleConsumersRabbitConfigProducerLatency                   avgt   10         0,025 ±       0,003  ms/op
+Benchmark.multipleConsumersStressTestKafkaConfigConsumerLatency          avgt   10        ≈ 10⁻⁶                ms/op
+Benchmark.multipleConsumersStressTestKafkaConfigProducerLatency          avgt   10        ≈ 10⁻⁴                ms/op
+Benchmark.simpleRabbitConsumerLatency                                    avgt   10         0,556 ±       0,008  ms/op
+Benchmark.simpleRabbitProducerLatency                                    avgt   10         0,023 ±       0,004  ms/op
+Benchmark.stressTestKafkaConfigConsumerLatency                           avgt   10        ≈ 10⁻⁶                ms/op
+Benchmark.stressTestKafkaConfigProducerLatency                           avgt   10        ≈ 10⁻⁴                ms/op
+Benchmark.stressTestRabbitConfigConsumerLatency                          avgt   10         5,491 ±       0,115  ms/op
+Benchmark.stressTestRabbitConfigProducerLatency                          avgt   10         0,201 ±       0,010  ms/op
