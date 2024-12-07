@@ -29,7 +29,7 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 
 	// Logback
-	implementation 'ch.qos.logback:logback-classic:1.4.5'
+	implementation 'ch.qos.logback:logback-classic:1.5.6'
 
 	// Prometheus
 	runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
@@ -37,7 +37,6 @@ dependencies {
 	// Logstash
 	implementation 'net.logstash.logback:logstash-logback-encoder:8.0'
 
-	testImplementation 'org.testcontainers:junit-jupiter:1.20.2'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
